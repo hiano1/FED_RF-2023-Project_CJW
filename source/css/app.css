@@ -3,6 +3,21 @@ body {
     position: relative;
     box-sizing: border-box;
     outline: none;
+}
+
+*,
+::after,
+::before {
+    box-sizing: border-box;
+}
+:where(
+        :not(html, iframe, canvas, img, svg, video, audio):not(svg *, symbol *)
+    ) {
+    all: unset;
+    display: revert;
+}
+body {
     font-family: helvetica, arial, sans-serif;
     background-color: #f9f8f6;
+    line-height: 1.2;
 }
