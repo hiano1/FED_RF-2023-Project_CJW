@@ -1,6 +1,6 @@
 import Component from "../core/Component.js";
 
-export default class Items extends Component {
+export default class VideoCards extends Component {
     template() {
         //   const { filteredItems } = this.props;
         //   return `
@@ -23,7 +23,15 @@ export default class Items extends Component {
         //   </ul>
         // `;
 
+        // 카드 번호 찍을 인덱스 / 설명글에 적을 데이터/ 영상 경로
+        // src="./source/resource/colabs-hero.mp4"
+
+        const { CardsInfo } = this.props;
+
         return `
+        ${CardsInfo.map(
+            ({ contents, src }) => `
+        
           <section class="main_music_card">
             <div class="container">
                 <div class="inner">
@@ -33,7 +41,7 @@ export default class Items extends Component {
                         autoplay
                         muted
                         loop
-                        src="./source/resource/colabs-hero.mp4"
+                        src="${src}"
                         type="video/mp4"
                       ></video>
                       <div class="video_title">
@@ -47,9 +55,7 @@ export default class Items extends Component {
                           ></path>
                         </svg>
                         <h1>
-                          ㅁㄴㅇㄻㄴㅇㄹ<br />
-                          ㄴㅁㅇㄹㄴㅇㄹㅇㄻ<br />
-                          ㄴㅁㅇㄹㄴㅇㄹㄴㅇㄹ
+                          ${contents}
                         </h1>
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
@@ -82,6 +88,8 @@ export default class Items extends Component {
                 </div>
             </div>
           </section>
+          `
+        ).join("")}
         `;
     }
 
