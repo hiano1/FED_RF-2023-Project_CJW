@@ -1,5 +1,8 @@
+*,
 body {
-    background-color: black;
-    color: white;
+    position: relative;
+    box-sizing: border-box;
+    outline: none;
     font-family: helvetica, arial, sans-serif;
+    background-color: #f9f8f6;
 }

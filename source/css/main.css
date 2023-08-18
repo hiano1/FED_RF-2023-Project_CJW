@@ -1,0 +1,6 @@
+.main_container {
+    display: flex;
+    margin-bottom: 160px;
+    margin-top: 10px;
+    transition: 0.3s;
+}
