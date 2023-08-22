@@ -1,6 +1,6 @@
 import Component from "../core/Component.js";
 
-export default class VideoCards extends Component {
+export default class VideoCard extends Component {
     template() {
         //   const { filteredItems } = this.props;
         //   return `
@@ -32,7 +32,7 @@ export default class VideoCards extends Component {
         ${CardsInfo.map(
             ({ contents, src }) => `
         
-          <section class="main_music_card">
+          <div class="main_music_card">
             <div class="container">
                 <div class="inner">
                     <div class="warp_video">
@@ -87,7 +87,7 @@ export default class VideoCards extends Component {
                     </div>
                 </div>
             </div>
-          </section>
+          </div>
           `
         ).join("")}
         `;

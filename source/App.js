@@ -1,5 +1,5 @@
 import Component from "./core/Component.js";
-import VideoCards from "./components/VideoCards.js";
+import VideoCards from "./components/VideoCard.js";
 import Header from "./components/Header.js";
 import ItemFilter from "./components/ItemFilter.js";
 
@@ -9,10 +9,15 @@ export default class App extends Component {
             isFilter: 0,
             CardsInfo: [
                 {
-                    // seq: 1,
-                    // contents: "item1",
-                    // active: false,
-                    contents: "asdf",
+                    contents: "1",
+                    src: "./source/resource/colabs-hero.mp4",
+                },
+                {
+                    contents: "2",
+                    src: "./source/resource/colabs-hero.mp4",
+                },
+                {
+                    contents: "3",
                     src: "./source/resource/colabs-hero.mp4",
                 },
             ],
@@ -22,7 +27,9 @@ export default class App extends Component {
     template() {
         return `
       <header data-component="item-appender"></header>
-      <main data-component="VideoCards"></main>  
+      <main>
+        <section data-component="VideoCards"></section>
+      </main>
       <footer data-component="item-filter"></footer>
     `;
     }
