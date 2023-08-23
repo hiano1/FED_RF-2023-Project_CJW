@@ -44,8 +44,7 @@ export default class App extends Component {
 
     // mounted에서 자식 컴포넌트를 마운트 해줘야 한다.
     mounted() {
-        const { VideoCards, PrevSlide, NextSlide, toggleItem, filterItem } =
-            this;
+        const { VideoCards, PrevSlide, NextSlide } = this;
         const $Header = this.$target.querySelector(
             '[data-component="item-appender"]'
         );
@@ -55,23 +54,16 @@ export default class App extends Component {
         const $itemFilter = this.$target.querySelector(
             '[data-component="item-filter"]'
         );
-
         // 하나의 객체에서 사용하는 메소드를 넘겨줄 bind를 사용하여 this를 변경하거나,
         // 다음과 같이 새로운 함수를 만들어줘야 한다.
         // ex) { addItem: contents => addItem(contents) }
-        new Header($Header, {
-            // addItem: addItem.bind(this),
-        });
+        new Header($Header, {});
         new VideoCardsList($VideoCardsList, {
             VideoCards,
             PrevSlide: PrevSlide.bind(this),
             NextSlide: NextSlide.bind(this),
-            // deleteItem: deleteItem.bind(this),
-            // toggleItem: toggleItem.bind(this),
         });
-        new ItemFilter($itemFilter, {
-            // filterItem: filterItem.bind(this),
-        });
+        new ItemFilter($itemFilter, {});
     }
 
     get VideoCards() {
@@ -87,31 +79,32 @@ export default class App extends Component {
     PrevSlide(currSlide) {
         const slide = document.querySelector("#VideoCardsList");
         const slideItems = document.querySelectorAll(".main_music_card");
+        const slideWidth = slide.clientWidth;
+        const slideItemsLength = slideItems.length;
 
         currSlide--;
-        if (currSlide > 0) {
-            const offset = slide.clientWidth * (currSlide - 1);
-            slideItems.forEach((i) => {
-                i.setAttribute("style", `left: ${-offset}px`);
-            });
-        } else {
-            currSlide++;
-        }
+        currSlide >= 0 ? currSlide : (currSlide = slideItemsLength - 1);
+
+        const offset = slideWidth * currSlide;
+        slideItems.forEach((i) => {
+            i.setAttribute("style", `left: ${-offset}px`);
+        });
         return currSlide;
     }
     NextSlide(currSlide) {
         const slide = document.querySelector("#VideoCardsList");
         const slideItems = document.querySelectorAll(".main_music_card");
+        const slideWidth = slide.clientWidth;
+        const slideItemsLength = slideItems.length;
 
         currSlide++;
-        if (currSlide <= slideItems.length) {
-            const offset = slide.clientWidth * (currSlide - 1);
-            slideItems.forEach((i) => {
-                i.setAttribute("style", `left: ${-offset}px`);
-            });
-        } else {
-            currSlide--;
-        }
+        currSlide == slideItemsLength ? (currSlide = 0) : currSlide;
+
+        const offset = slideWidth * currSlide;
+        slideItems.forEach((i) => {
+            i.setAttribute("style", `left: ${-offset}px`);
+        });
+
         return currSlide;
     }
 

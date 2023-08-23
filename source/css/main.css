@@ -5,6 +5,7 @@ section {
     position: relative;
     width: 100%;
 }
+/* #VideoCardsList .active {} */
 
 .main_music_card {
     display: flex;
