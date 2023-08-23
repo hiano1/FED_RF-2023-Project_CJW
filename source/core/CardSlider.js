@@ -1,5 +1,5 @@
 // 슬라이크 전체 크기(width 구하기)
-const slide = document.querySelector('[data-component="VideoCards"]');
+const slide = document.querySelector("#VideoCardsList");
 let slideWidth = slide.clientWidth;
 
 // 버튼 엘리먼트 선택하기

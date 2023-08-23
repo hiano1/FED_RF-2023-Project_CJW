@@ -1,5 +1,5 @@
 import Component from "./core/Component.js";
-import VideoCards from "./components/VideoCard.js";
+import VideoCardsList from "./components/VideoCardsList.js";
 import Header from "./components/Header.js";
 import ItemFilter from "./components/ItemFilter.js";
 
@@ -7,7 +7,7 @@ export default class App extends Component {
     setup() {
         this.state = {
             isFilter: 0,
-            CardsInfo: [
+            VideoCards: [
                 {
                     contents: "1",
                     src: "./source/resource/colabs-hero.mp4",
@@ -20,6 +20,14 @@ export default class App extends Component {
                     contents: "3",
                     src: "./source/resource/colabs-hero.mp4",
                 },
+                {
+                    contents: "4",
+                    src: "./source/resource/colabs-hero.mp4",
+                },
+                {
+                    contents: "5",
+                    src: "./source/resource/colabs-hero.mp4",
+                },
             ],
         };
     }
@@ -28,7 +36,7 @@ export default class App extends Component {
         return `
       <header data-component="item-appender"></header>
       <main>
-        <section data-component="VideoCards"></section>
+        <section id='VideoCardsList' data-component="VideoCardsList"></section>
       </main>
       <footer data-component="item-filter"></footer>
     `;
@@ -36,12 +44,13 @@ export default class App extends Component {
 
     // mounted에서 자식 컴포넌트를 마운트 해줘야 한다.
     mounted() {
-        const { CardsInfo, addItem, deleteItem, toggleItem, filterItem } = this;
+        const { VideoCards, PrevSlide, NextSlide, toggleItem, filterItem } =
+            this;
         const $Header = this.$target.querySelector(
             '[data-component="item-appender"]'
         );
-        const $VideoCards = this.$target.querySelector(
-            '[data-component="VideoCards"]'
+        const $VideoCardsList = this.$target.querySelector(
+            '[data-component="VideoCardsList"]'
         );
         const $itemFilter = this.$target.querySelector(
             '[data-component="item-filter"]'
@@ -53,10 +62,10 @@ export default class App extends Component {
         new Header($Header, {
             // addItem: addItem.bind(this),
         });
-        console.log(this);
-
-        new VideoCards($VideoCards, {
-            CardsInfo,
+        new VideoCardsList($VideoCardsList, {
+            VideoCards,
+            PrevSlide: PrevSlide.bind(this),
+            NextSlide: NextSlide.bind(this),
             // deleteItem: deleteItem.bind(this),
             // toggleItem: toggleItem.bind(this),
         });
@@ -65,14 +74,45 @@ export default class App extends Component {
         });
     }
 
-    get CardsInfo() {
-        const { isFilter, CardsInfo } = this.state;
-        return CardsInfo.filter(
+    get VideoCards() {
+        const { isFilter, VideoCards } = this.state;
+        return VideoCards.filter(
             ({ active }) =>
                 (isFilter === 1 && active) ||
                 (isFilter === 2 && !active) ||
                 isFilter === 0
         );
+    }
+
+    PrevSlide(currSlide) {
+        const slide = document.querySelector("#VideoCardsList");
+        const slideItems = document.querySelectorAll(".main_music_card");
+
+        currSlide--;
+        if (currSlide > 0) {
+            const offset = slide.clientWidth * (currSlide - 1);
+            slideItems.forEach((i) => {
+                i.setAttribute("style", `left: ${-offset}px`);
+            });
+        } else {
+            currSlide++;
+        }
+        return currSlide;
+    }
+    NextSlide(currSlide) {
+        const slide = document.querySelector("#VideoCardsList");
+        const slideItems = document.querySelectorAll(".main_music_card");
+
+        currSlide++;
+        if (currSlide <= slideItems.length) {
+            const offset = slide.clientWidth * (currSlide - 1);
+            slideItems.forEach((i) => {
+                i.setAttribute("style", `left: ${-offset}px`);
+            });
+        } else {
+            currSlide--;
+        }
+        return currSlide;
     }
 
     //     addItem(contents) {
