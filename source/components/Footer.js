@@ -1,6 +1,6 @@
 import Component from "../core/Component.js";
 
-export default class ItemFilter extends Component {
+export default class Footer extends Component {
     template() {
         return `
       <button class="filterBtn" data-is-filter="0">전체 보기</button>

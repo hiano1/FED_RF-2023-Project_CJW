@@ -2,7 +2,7 @@ import Component from "../core/Component.js";
 
 export default class VideoCard extends Component {
     template() {
-        // todo : nav bar 추가, muted 시 버튼 전환, 텍스트,영상 채우기
+        // todo : nav bar 추가, muted 시 버튼 전환, 텍스트,영상 채우기, 음소거 확인필요
 
         const { VideoCards } = this.props;
         const index = 0;
@@ -15,6 +15,7 @@ export default class VideoCard extends Component {
                     <div class="warp_video">
                       <video
                       class="video"
+                        preload = "metadata"
                         playsinline
                         muted
                         src="${src}"

@@ -1,11 +1,13 @@
 import Component from "./core/Component.js";
 import VideoCardsList from "./components/VideoCardsList.js";
+import PlayList from "./components/PlayList.js";
 import Header from "./components/Header.js";
-import ItemFilter from "./components/ItemFilter.js";
+import Footer from "./components/Footer.js";
 
 export default class App extends Component {
     setup() {
         this.state = {
+            isPlaying: false,
             VideoCards: [
                 {
                     contents: "1",
@@ -31,28 +33,28 @@ export default class App extends Component {
         };
     }
 
+    //todo : 헤더 메뉴 , footer , main 하단부
+    // 리스트 위에 글자추가 https://twogood.com.au/ font "Futura Now Headline"
+    // brbrbr  => 플레이 리스트 여러개 카드 슬라이드 => 사용법
+    //https://colabs.com.au/
     template() {
         return `
-      <header data-component="item-appender"></header>
+      <header></header>
       <main>
-        <section id='VideoCardsList' data-component="VideoCardsList"></section>
+        <section id='VideoCardsList'></section>
+        <section id="PlayList"></section>
       </main>
-      <footer data-component="item-filter"></footer>
+      <footer></footer>
     `;
     }
 
     // mounted
     mounted() {
         const { VideoCards, PrevSlide, NextSlide } = this;
-        const $Header = this.$target.querySelector(
-            '[data-component="item-appender"]'
-        );
-        const $VideoCardsList = this.$target.querySelector(
-            '[data-component="VideoCardsList"]'
-        );
-        const $itemFilter = this.$target.querySelector(
-            '[data-component="item-filter"]'
-        );
+        const $Header = this.$target.querySelector("header");
+        const $VideoCardsList = this.$target.querySelector("#VideoCardsList");
+        const $PlayList = this.$target.querySelector("#PlayList");
+        const $Footer = this.$target.querySelector("footer");
         // 하나의 객체에서 사용하는 메소드를 넘겨줄 bind를 사용하여 this를 변경하거나,
         // 다음과 같이 새로운 함수를 만들어줘야 한다.
         // ex) { addItem: contents => addItem(contents) }
@@ -62,7 +64,8 @@ export default class App extends Component {
             PrevSlide: PrevSlide.bind(this),
             NextSlide: NextSlide.bind(this),
         });
-        new ItemFilter($itemFilter, {});
+        new PlayList($PlayList, {});
+        new Footer($Footer, {});
     }
 
     get VideoCards() {

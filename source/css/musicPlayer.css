@@ -138,3 +138,14 @@ i.fa-step-forward,
 i.fa-step-backward {
     cursor: pointer;
 }
+
+.fixedPlayer {
+    display: grid;
+    background-color: cadetblue;
+    position: fixed;
+    right: 2vw;
+    bottom: 3vh;
+    width: 30vw;
+    height: 15vh;
+    border-radius: 30px;
+}
