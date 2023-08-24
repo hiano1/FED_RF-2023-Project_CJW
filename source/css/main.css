@@ -86,13 +86,9 @@ section {
     position: absolute;
     right: 20px;
     bottom: 20px;
-}
-.on_video_mute button {
-    width: 100%;
-    height: 100%;
     cursor: pointer;
 }
-.on_video_mute button svg {
+.on_video_mute svg {
     width: 100%;
     height: 100%;
 }

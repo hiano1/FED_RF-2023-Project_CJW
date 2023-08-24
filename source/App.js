@@ -6,27 +6,26 @@ import ItemFilter from "./components/ItemFilter.js";
 export default class App extends Component {
     setup() {
         this.state = {
-            isFilter: 0,
             VideoCards: [
                 {
                     contents: "1",
-                    src: "./source/resource/colabs-hero.mp4",
+                    src: "./source/resource/5s.mp4",
                 },
                 {
                     contents: "2",
-                    src: "./source/resource/colabs-hero.mp4",
+                    src: "./source/resource/5s.mp4",
                 },
                 {
                     contents: "3",
-                    src: "./source/resource/colabs-hero.mp4",
+                    src: "./source/resource/5s.mp4",
                 },
                 {
                     contents: "4",
-                    src: "./source/resource/colabs-hero.mp4",
+                    src: "./source/resource/5s.mp4",
                 },
                 {
                     contents: "5",
-                    src: "./source/resource/colabs-hero.mp4",
+                    src: "./source/resource/5s.mp4",
                 },
             ],
         };
@@ -42,7 +41,7 @@ export default class App extends Component {
     `;
     }
 
-    // mounted에서 자식 컴포넌트를 마운트 해줘야 한다.
+    // mounted
     mounted() {
         const { VideoCards, PrevSlide, NextSlide } = this;
         const $Header = this.$target.querySelector(
@@ -67,13 +66,9 @@ export default class App extends Component {
     }
 
     get VideoCards() {
-        const { isFilter, VideoCards } = this.state;
-        return VideoCards.filter(
-            ({ active }) =>
-                (isFilter === 1 && active) ||
-                (isFilter === 2 && !active) ||
-                isFilter === 0
-        );
+        const { VideoCards } = this.state;
+
+        return VideoCards;
     }
 
     PrevSlide(currSlide) {
@@ -81,6 +76,11 @@ export default class App extends Component {
         const slideItems = document.querySelectorAll(".main_music_card");
         const slideWidth = slide.clientWidth;
         const slideItemsLength = slideItems.length;
+        const prevVideo =
+            slideItems[currSlide].getElementsByClassName("video")[0];
+
+        prevVideo.pause();
+        prevVideo.currentTime = 0;
 
         currSlide--;
         currSlide >= 0 ? currSlide : (currSlide = slideItemsLength - 1);
@@ -89,6 +89,11 @@ export default class App extends Component {
         slideItems.forEach((i) => {
             i.setAttribute("style", `left: ${-offset}px`);
         });
+
+        const currVideo =
+            slideItems[currSlide].getElementsByClassName("video")[0];
+        currVideo.play();
+
         return currSlide;
     }
     NextSlide(currSlide) {
@@ -96,6 +101,11 @@ export default class App extends Component {
         const slideItems = document.querySelectorAll(".main_music_card");
         const slideWidth = slide.clientWidth;
         const slideItemsLength = slideItems.length;
+        const prevVideo =
+            slideItems[currSlide].getElementsByClassName("video")[0];
+
+        prevVideo.pause();
+        prevVideo.currentTime = 0;
 
         currSlide++;
         currSlide == slideItemsLength ? (currSlide = 0) : currSlide;
@@ -104,6 +114,10 @@ export default class App extends Component {
         slideItems.forEach((i) => {
             i.setAttribute("style", `left: ${-offset}px`);
         });
+
+        const currVideo =
+            slideItems[currSlide].getElementsByClassName("video")[0];
+        currVideo.play();
 
         return currSlide;
     }

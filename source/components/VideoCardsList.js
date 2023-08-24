@@ -2,13 +2,11 @@ import Component from "../core/Component.js";
 
 export default class VideoCard extends Component {
     template() {
-        //여기서는 list layout, nav btn  , progress bar 만 그려준다.
-        //리스트의 index -1,0,1 번째 카드만 가져온다. 터치 드래그를 위해 앞뒤 카드는 미리 구현되어있어야함.
+        // todo : nav bar 추가, muted 시 버튼 전환, 텍스트,영상 채우기
 
         const { VideoCards } = this.props;
         const index = 0;
-        // VideoCards.push(VideoCards[0]);
-        // VideoCards.unshift(VideoCards[VideoCards.length - 2]);
+
         return `
         ${VideoCards.map(
             ({ contents, src }, i) => `
@@ -18,7 +16,6 @@ export default class VideoCard extends Component {
                       <video
                       class="video"
                         playsinline
-                        autoplay
                         muted
                         src="${src}"
                         type="video/mp4"
@@ -47,21 +44,19 @@ export default class VideoCard extends Component {
                         </svg>
                       </div>
                       <div class="on_video_mute">
-                        <button>
-                          <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            fill="#000000"
-                            width="800px"
-                            height="800px"
-                            viewBox="-1 0 19 19"
-                            class="cf-icon-svg"
-                          >
-                            <path
-                              d="M16.417 9.583A7.917 7.917 0 1 1 8.5 1.666a7.917 7.917 0 0 1 7.917 7.917zM7.84 6.05c0-.435-.252-.54-.56-.232L5.16 7.94H3.704a.794.794 0 0 0-.791.793v1.686a.794.794 0 0 0 .791.792h1.457l2.12 2.12c.308.308.56.204.56-.232zm3.84 3.524 1.49-1.49a.396.396 0 0 0-.56-.56l-1.49 1.49-1.49-1.49a.396.396 0 0 0-.56.56l1.49 1.49-1.49 1.49a.396.396 0 1 0 .56.56l1.49-1.49 1.49 1.49a.396.396 0 0 0 .56-.56z"
-                              fill="#F9F8F6"
-                            />
-                          </svg>
-                        </button>
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          fill="#000000"
+                          width="800px"
+                          height="800px"
+                          viewBox="-1 0 19 19"
+                          class="cf-icon-svg"
+                        >
+                          <path
+                            d="M16.417 9.583A7.917 7.917 0 1 1 8.5 1.666a7.917 7.917 0 0 1 7.917 7.917zM7.84 6.05c0-.435-.252-.54-.56-.232L5.16 7.94H3.704a.794.794 0 0 0-.791.793v1.686a.794.794 0 0 0 .791.792h1.457l2.12 2.12c.308.308.56.204.56-.232zm3.84 3.524 1.49-1.49a.396.396 0 0 0-.56-.56l-1.49 1.49-1.49-1.49a.396.396 0 0 0-.56.56l1.49 1.49-1.49 1.49a.396.396 0 1 0 .56.56l1.49-1.49 1.49 1.49a.396.396 0 0 0 .56-.56z"
+                            fill="#F9F8F6"
+                          />
+                        </svg>
                       </div>
                     </div>
                   </div>
@@ -80,6 +75,7 @@ export default class VideoCard extends Component {
         let startPoint = 0;
         let endPoint = 0;
 
+        // 버튼 클릭 이벤트
         this.addEvent("click", ".slide_prev_button", () => {
             currSlide = PrevSlide(currSlide);
         });
@@ -112,15 +108,23 @@ export default class VideoCard extends Component {
                 currSlide = NextSlide(currSlide);
             }
         });
-        document.querySelectorAll(".video").forEach((video) => {
-            video.addEventListener("ended", () => {
-                console.log("ended");
-            });
+
+        //음소거 버튼
+        this.addEvent("click", ".on_video_mute", ({ target }) => {
+            const video = target.closest(".warp_video").childNodes[1];
+            video.muted ? (video.muted = false) : (video.muted = true);
+            console.log(video.muted);
         });
-        //비디오 자동 넘기기
-        this.addEvent("ended", ".video", () => {
-            console.log("ended");
-            currSlide = NextSlide(currSlide);
+
+        //비디오 자동 넘기기(ended 때문에 컴포넌트 미사용)
+        document.querySelectorAll(".video").forEach((video, index) => {
+            // 맨처음 영상 플레이
+            if (index == 0) {
+                video.play();
+            }
+            video.addEventListener("ended", () => {
+                currSlide = NextSlide(currSlide);
+            });
         });
     }
 }
