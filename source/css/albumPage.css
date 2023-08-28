@@ -50,10 +50,16 @@ div {
 }
 
 .image1 {
-    background: url(https://cdn.pixabay.com/photo/2020/07/14/16/18/snow-5404785_960_720.jpg)
-        no-repeat;
-    background-attachment: fixed;
-    background-size: cover;
+    position: absolute;
+    width: 100%;
+    top: 0;
+    left: 0;
+    object-fit: cover;
+}
+
+.image1 video {
+    position: relative;
+    width: 100%;
 }
 
 .image2 {
@@ -81,6 +87,7 @@ div {
     color: #fff;
     background: #1e3932;
     font-size: 0.9rem;
+    margin-top: 43rem;
 }
 
 * {
