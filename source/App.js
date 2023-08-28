@@ -35,19 +35,18 @@ export default class App extends Component {
 
     //todo : 헤더 메뉴 , footer , main 하단부
     // 리스트 위에 글자추가 https://twogood.com.au/ font "Futura Now Headline"
-    // brbrbr  => 플레이 리스트 여러개 카드 슬라이드 => 사용법
     //https://colabs.com.au/
     template() {
         return `
       <header></header>
       <main>
         <section id='VideoCardsList'></section>
-        <section id="PlayList"></section>
+        
       </main>
       <footer></footer>
     `;
     }
-
+    // <section id="PlayList"></section>
     // mounted
     mounted() {
         const { VideoCards, PrevSlide, NextSlide } = this;
@@ -64,7 +63,7 @@ export default class App extends Component {
             PrevSlide: PrevSlide.bind(this),
             NextSlide: NextSlide.bind(this),
         });
-        new PlayList($PlayList, {});
+        // new PlayList($PlayList, {});
         new Footer($Footer, {});
     }
 
