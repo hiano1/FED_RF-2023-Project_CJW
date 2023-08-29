@@ -8,30 +8,24 @@
     </head>
     <body>
         <!-- 헤더 & 메뉴 기존 헤더페이지-->
-        <!-- 배경영상 << fixed-->
-        <!-- <div class="album_video_bg">
-            <video src=""></video>
-        </div> -->
+        <!-- 배경영상 << stiky-->
         <!-- 배경 글자<<왼쪽으로 쌓임 -->
-        <!-- <div class="album_video_text">
-            <span class="rightToLeft">sdasdafsd</span>
-            <span class="rightToLeft">sfadsfadsdaf</span>
-            <span class="rightToLeft">sfadsfdsafd</span>
-        </div> -->
-        <div class="image1">
-            <video
-                src="../resource/colabs-hero.mp4"
-                autoplay
-                muted
-                playsinline
-                loop
-            ></video>
-        </div>
+        <div class="vertical_scroll">
+            <div class="stiky_video">
+                <video
+                    src="../resource/colabs-hero.mp4"
+                    autoplay
+                    muted
+                    playsinline
+                    loop
+                ></video>
+            </div>
 
-        <div class="text">
-            <h2>sfdasfdasdfasdfsfda</h2>
-            <h2>sfadsfdasdfadsfa</h2>
-            <h2>safdsfdasdaf</h2>
+            <div class="video_text">
+                <h2>sfdasfdasdfasdfsfda</h2>
+                <h2>sfadsfdasdfadsfa</h2>
+                <h2>safdsfdasdaf</h2>
+            </div>
         </div>
 
         <div class="image2"></div>
@@ -47,13 +41,14 @@
     </body>
     <script>
         const options = {
+            // root: document.querySelector(".stiky_video"),
             root: null, // viewport
             rootMargin: "0px",
-            threshold: 0.5,
+            threshold: 1,
         };
         const observer = new IntersectionObserver((entries) => {
             entries.forEach((entry) => {
-                if (entry.isIntersecting) {
+                if (entry.intersectionRatio) {
                     entry.target.classList.add("active");
                 } else {
                     entry.target.classList.remove("active");
