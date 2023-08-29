@@ -4,7 +4,7 @@
 }
 
 .vertical_scroll {
-    height: 200rem; /* required */
+    height: 150rem; /* required */
     width: 100%;
     display: grid;
     align-items: start;
@@ -33,39 +33,31 @@
 }
 
 .video_text {
-    position: absolute;
+    position: sticky;
     width: 30rem;
-    height: 150rem;
+    top: 5rem;
     left: 5rem;
-    margin-top: 60rem;
+    margin-top: -30rem;
     color: #fff;
     font-size: 2rem;
 }
 
 .video_text h2 {
     display: block;
-    margin-bottom: 10rem;
+    height: 5rem;
+    margin-bottom: 2rem;
     opacity: 0;
-    transform: translateY(100%);
-    transition: opacity 2s;
+    transform: translateX(100%);
+    transition: 2s;
 }
 
 .video_text h2.active {
-    transform: translateY(0);
-    position: sticky;
-    top: 8rem;
-    width: 100%;
-    z-index: 1;
     opacity: 1;
-}
-.video_text h2:nth-of-type(2).active {
-    top: 16rem;
-}
-.video_text h2:nth-of-type(3).active {
-    top: 24rem;
+    transform: translateX(0);
 }
 
 .image2 {
+    position: relative;
     height: 50rem;
     background: url(https://cdn.pixabay.com/photo/2022/08/23/06/55/village-7405160_960_720.jpg)
         no-repeat;

@@ -20,12 +20,12 @@
                     loop
                 ></video>
             </div>
-
             <div class="video_text">
                 <h2>sfdasfdasdfasdfsfda</h2>
                 <h2>sfadsfdasdfadsfa</h2>
                 <h2>safdsfdasdaf</h2>
             </div>
+            <!-- 그냥 스크립트로 만들어 넣는게 빠를듯 -->
         </div>
 
         <div class="image2"></div>
@@ -41,9 +41,8 @@
     </body>
     <script>
         const options = {
-            // root: document.querySelector(".stiky_video"),
             root: null, // viewport
-            rootMargin: "0px",
+            rootMargin: "500px 0px 0px 0px",
             threshold: 1,
         };
         const observer = new IntersectionObserver((entries) => {
