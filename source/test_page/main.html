@@ -18,18 +18,86 @@
                     playsinline
                     loop
                 ></video>
-            </div>
-            <div class="intro_video_text">
-                <h2>sfdasfdasdfasdfsfda</h2>
-                <h2>sfadsfdasdfadsfa</h2>
-                <h2>safdsfdasdaf</h2>
+                <div class="intro_video_text">
+                    <h2>THIS IS ALUBM PAGE</h2>
+                    <h2>VIDEO IS SAMPLE</h2>
+                </div>
             </div>
         </div>
         <!-- 앨범 정보 -->
         <div class="album_info_contaier">
-            <div class="album_image"></div>
-            <div class="album_info"></div>
-            <div class="track_list"></div>
+            <div class="album_image">
+                <img src="../resource/art01.jpg" alt="art01" />
+            </div>
+            <div class="album_description">
+                <div class="desc_title_area">
+                    <div class="desc_title">NOWITZKI</div>
+                    <div class="desc_sub_title">빈지노 (Beenzino)</div>
+                </div>
+                <div class="desc_items">
+                    <div class="desc_item">2023.8.29</div>
+                    <div class="desc_item">랩/힙합</div>
+                    <div class="desc_item">18곡, 58분 3초</div>
+                </div>
+                <div class="desc_text">
+                    프로젝트 컬러즈(Prjt. Colors) [헤이즈X정승환 - 언젠간
+                    괜찮아질 이야기] "우리 이런 아픈 날이 지나고 부디 서로
+                    행복하기로 해요" 그립고 가끔은 생각나서 눈물 짓겠지만,
+                    그래도 언젠간 괜찮아질 연인 간의 사랑과 이별 이야기 각각의
+                    색들이 섞여서 새로운 색을 만들어내듯 아...더보기
+                </div>
+                <div class="desc_button">
+                    <button>전체 재생</button>
+                    <button>apple</button>
+                    <button>spotify</button>
+                    <button>youtube</button>
+                </div>
+            </div>
+            <div class="track_list_container">
+                <div class="track_list">
+                    <div class="track_list_title">Track List</div>
+                    <div class="track">
+                        <div class="track_number">1</div>
+                        <div class="track_title">Monet</div>
+                        <div class="track_artist">빈지노 (Beenzino)</div>
+                        <div class="track_button">
+                            <button>...</button>
+                        </div>
+                    </div>
+                    <div class="track">
+                        <div class="track_number">2</div>
+                        <div class="track_title">침대에서/막걸리</div>
+                        <div class="track_artist">빈지노 (Beenzino)</div>
+                        <div class="track_button">
+                            <button>...</button>
+                        </div>
+                    </div>
+                    <div class="track">
+                        <div class="track_number">3</div>
+                        <div class="track_title">여행 Again</div>
+                        <div class="track_artist">빈지노 (Beenzino)</div>
+                        <div class="track_button">
+                            <button>...</button>
+                        </div>
+                    </div>
+                    <div class="track">
+                        <div class="track_number">4</div>
+                        <div class="track_title">Dope As</div>
+                        <div class="track_artist">빈지노 (Beenzino)</div>
+                        <div class="track_button">
+                            <button>...</button>
+                        </div>
+                    </div>
+                    <div class="track">
+                        <div class="track_number">5</div>
+                        <div class="track_title">Coca Cola Red</div>
+                        <div class="track_artist">빈지노 (Beenzino)</div>
+                        <div class="track_button">
+                            <button>...</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
         <!-- 관련영상 -->
         <div class="album_contents_container">
@@ -48,20 +116,22 @@
         const options = {
             root: null, // viewport
             rootMargin: "0px",
-            threshold: 1,
+            threshold: 0.5,
         };
         const observer = new IntersectionObserver((entries) => {
             entries.forEach((entry) => {
                 if (entry.intersectionRect) {
-                    entry.intersectionRatio == 1
-                        ? entry.target.classList.add("active")
-                        : entry.target.classList.remove("active");
+                    // let x = entry.boundingClientRect;
+                    // console.log(x);
+                    // entry.intersectionRatio == 1
+                    // ? entry.target.classList.add("active")
+                    // : entry.target.classList.remove("active");
                 }
             });
         }, options);
 
         const titleList = document.querySelectorAll("h2");
 
-        titleList.forEach((el) => observer.observe(el));
+        // titleList.forEach((el) => observer.observe(el));
     </script>
 </html>

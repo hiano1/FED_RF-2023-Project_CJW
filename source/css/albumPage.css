@@ -2,17 +2,21 @@
     margin: 0;
     padding: 0;
 }
+html::-webkit-scrollbar {
+    display: none;
+}
 
 div {
     outline: dotted 3px red;
 }
 
 .sticky_grid {
-    height: 200rem; /* required */
-    width: 100%;
     display: grid;
     align-items: start;
     justify-content: center;
+
+    height: 200vh; /* required */
+    width: 100%;
 
     background: url(https://cdn.pixabay.com/photo/2022/08/30/15/33/nature-7421337_960_720.jpg)
         no-repeat;
@@ -28,58 +32,96 @@ div {
 
 .intro_stiky_video video {
     filter: blur(1px);
-    width: 1920px;
-    object-fit: cover;
+    width: 100vw;
+    height: 100vh;
+    object-fit: fill;
 }
 
 .intro_video_text {
     position: sticky;
     width: 40vw;
-    top: 50vh;
-    left: 5vw;
-    margin-top: -100vh;
+    height: 0;
+    left: 3vw;
+    bottom: 30vh;
     color: #fff;
-    font-size: 2rem;
+    font-size: 2.5vw;
 }
 
 .intro_video_text h2 {
     display: block;
-    height: 5rem;
-    margin-bottom: 2rem;
-    padding-top: 3rem;
-    opacity: 0;
-    transform: translateX(100%);
-    transition: 2s;
+    height: 3vh;
+    margin-bottom: 3vh;
+    padding-top: 4vh;
+    opacity: 1;
+    /* transform: translateX(100%); */
+    transition: 1s ease-out;
 }
 
 .intro_video_text h2.active {
     opacity: 1;
-    padding-top: 0;
+    /* padding-top: 0; */
     transform: translateX(0);
 }
 
 .album_info_contaier {
     display: grid;
     grid-template:
-        "image info" 1fr
-        "list list" 2fr
+        "image desc" 1fr
+        "list list" 1fr
         / 1fr 2fr;
 
-    height: 50rem;
+    min-height: 50rem;
     background: url(https://cdn.pixabay.com/photo/2022/08/23/06/55/village-7405160_960_720.jpg)
         no-repeat;
     background-attachment: fixed;
     background-size: cover;
-    padding: 10rem 5rem;
+    padding: 20rem 5rem;
 }
 .album_image {
+    display: flex;
+    justify-content: center;
     grid-area: image;
 }
-.album_info {
-    grid-area: info;
+
+.album_image img {
+    width: 20vw;
+    object-fit: contain;
+}
+.album_description {
+    grid-area: desc;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    color: white;
+    font-weight: 500;
+}
+.desc_title {
+    font-size: 3vw;
+}
+.desc_sub_title {
+    margin-left: 0.7vw;
+    font-size: 1.3vw;
+}
+.desc_items {
+    display: flex;
+}
+.track_list_container {
+    grid-area: list;
+    display: flex;
+    justify-content: center;
 }
 .track_list {
-    grid-area: list;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin: 3vw 3vh;
+}
+.track_list_title {
+    font-size: 2vw;
+}
+.track_list .track {
+    display: flex;
+    font-size: 1.2vw;
 }
 
 .album_contents_container {
@@ -90,7 +132,7 @@ div {
         "c c c e e e" 1fr
         "f f f f g g" 1fr /
         1fr 1fr 1fr 1fr 1fr 1fr;
-    gap: 8px;
+    gap: 1vw;
 
     height: 80rem;
     background: url(https://cdn.pixabay.com/photo/2022/08/30/15/33/nature-7421337_960_720.jpg)

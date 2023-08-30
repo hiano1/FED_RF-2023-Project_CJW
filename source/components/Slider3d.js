@@ -4,18 +4,14 @@ import App from "../App.js";
 export default class Slider3D extends Component {
     template() {
         //임시??
-        let list = [1, 2, 3, 4, 5];
+        const list = [1, 2, 3, 4, 5];
+        const listMap = list
+            .map((item) => `<div class="carousel__cell">${item}</div>`)
+            .join("");
         return `  
         <div class="scene">
             <div class="carousel">
-                ${list
-                    .map(
-                        (item) =>
-                            `<div class="carousel__cell">
-                        ${item}
-                    </div>`
-                    )
-                    .join("")}
+                ${listMap}
             </div>
         </div>
         <div class="carousel-options">
