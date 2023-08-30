@@ -101,18 +101,62 @@
         </div>
         <!-- 관련영상 -->
         <div class="album_contents_container">
-            <div class="album_content"></div>
-            <div class="album_content"></div>
-            <div class="album_content"></div>
-            <div class="album_content"></div>
-            <div class="album_content"></div>
-            <div class="album_content"></div>
-            <div class="album_content"></div>
+            <div class="album_content">
+                <img
+                    class="content_thumbnail"
+                    src="../resource/art01.jpg"
+                    alt="thumbnail"
+                />
+            </div>
+            <div class="album_content">
+                <img
+                    class="content_thumbnail"
+                    src="../resource/art01.jpg"
+                    alt="thumbnail"
+                />
+            </div>
+            <div class="album_content">
+                <img class="content_thumbnail" alt="thumbnail" />
+            </div>
+            <div class="album_content">
+                <img class="content_thumbnail" alt="thumbnail" />
+            </div>
+            <div class="album_content">
+                <img class="content_thumbnail" alt="thumbnail" />
+            </div>
+            <div class="album_content">
+                <img class="content_thumbnail" alt="thumbnail" />
+            </div>
+            <div class="album_content">
+                <img class="content_thumbnail" alt="thumbnail" />
+            </div>
         </div>
         <!-- 다른 앨범 소개는 다른페이지에 -->
     </body>
     <script>
-        //질문
+        // let last_known_scroll_position = 0;
+        // let ticking = false;
+
+        // let sticky_grid = document.querySelector(".sticky_grid");
+        // let intro_video_text = document.querySelector(".intro_video_text");
+        // function doSomething(scroll_pos) {
+        //     scroll_pos > 100 ? intro_video_text.classList.add("active") : "";
+        //     scroll_pos > 800 ? intro_video_text.classList.remove("active") : "";
+        // }
+
+        // window.addEventListener("scroll", (e) => {
+        //     last_known_scroll_position = window.pageYOffset;
+
+        //     if (!ticking) {
+        //         window.requestAnimationFrame(function () {
+        //             doSomething(last_known_scroll_position);
+        //             ticking = false;
+        //         });
+
+        //         ticking = true;
+        //     }
+        // });
+
         const options = {
             root: null, // viewport
             rootMargin: "0px",
@@ -121,17 +165,15 @@
         const observer = new IntersectionObserver((entries) => {
             entries.forEach((entry) => {
                 if (entry.intersectionRect) {
-                    // let x = entry.boundingClientRect;
-                    // console.log(x);
-                    // entry.intersectionRatio == 1
-                    // ? entry.target.classList.add("active")
-                    // : entry.target.classList.remove("active");
+                    let x = entry.boundingClientRect;
+                    console.log(x);
+                    entry.intersectionRatio == 1
+                        ? entry.target.classList.add("active")
+                        : entry.target.classList.remove("active");
                 }
             });
         }, options);
-
-        const titleList = document.querySelectorAll("h2");
-
-        // titleList.forEach((el) => observer.observe(el));
+        const titleList = document.querySelectorAll(".intro_video_text");
+        titleList.forEach((el) => observer.observe(el));
     </script>
 </html>
