@@ -8,10 +8,9 @@
     </head>
     <body>
         <!-- 헤더 & 메뉴 기존 헤더페이지-->
-        <!-- 배경영상 << stiky-->
-        <!-- 배경 글자<<왼쪽으로 쌓임 -->
-        <div class="vertical_scroll">
-            <div class="stiky_video">
+        <!-- 배경영상-->
+        <div class="sticky_grid">
+            <div class="intro_stiky_video">
                 <video
                     src="../resource/colabs-hero.mp4"
                     autoplay
@@ -20,37 +19,34 @@
                     loop
                 ></video>
             </div>
-            <div class="video_text">
+            <div class="intro_video_text">
                 <h2>sfdasfdasdfasdfsfda</h2>
                 <h2>sfadsfdasdfadsfa</h2>
                 <h2>safdsfdasdaf</h2>
             </div>
-            <!-- 그냥 스크립트로 만들어 넣는게 빠를듯 -->
         </div>
-
-        <div class="image2"></div>
-
-        <div class="text">
-            <h2>sdafsfdasfdafsda</h2>
+        <!-- 앨범 정보 -->
+        <div class="album_info_contaier">
+            <div class="album_info"></div>
+            <div class="track_list"></div>
         </div>
-
-        <div class="image3"></div>
-        <!-- 앨범 트랙 -->
         <!-- 관련영상 -->
+        <div class="image3"></div>
         <!-- 다른 앨범 소개는 다른페이지에 -->
     </body>
     <script>
+        //질문
         const options = {
             root: null, // viewport
-            rootMargin: "500px 0px 0px 0px",
+            rootMargin: "0px",
             threshold: 1,
         };
         const observer = new IntersectionObserver((entries) => {
             entries.forEach((entry) => {
-                if (entry.intersectionRatio) {
-                    entry.target.classList.add("active");
-                } else {
-                    entry.target.classList.remove("active");
+                if (entry.intersectionRect) {
+                    entry.intersectionRatio == 1
+                        ? entry.target.classList.add("active")
+                        : entry.target.classList.remove("active");
                 }
             });
         }, options);
