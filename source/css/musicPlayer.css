@@ -1,6 +1,7 @@
 body {
     background-color: lightgreen;
-
+    margin: 0;
+    padding: 0;
     /* Smoothly transition the background color */
     transition: background-color 0.5s;
 }
@@ -139,13 +140,72 @@ i.fa-step-backward {
     cursor: pointer;
 }
 
-.fixedPlayer {
-    display: grid;
+.fixedPlayerWarp {
     background-color: cadetblue;
     position: fixed;
-    right: 2vw;
-    bottom: 3vh;
-    width: 30vw;
+    bottom: 0;
+
+    width: 100vw;
     height: 15vh;
-    border-radius: 30px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.fixedPlayer {
+    width: 90%;
+    height: 95%;
+    display: grid;
+    grid-template:
+        "a b c" 1fr
+        "d e e" 2fr
+        "d f g " 1fr/
+        1fr 3fr 1fr;
+}
+.slider_container {
+    font-size: 1vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.slider {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    height: 5px;
+    width: 100%;
+    background: black;
+    opacity: 0.7;
+    -webkit-transition: 0.2s;
+    transition: opacity 0.2s;
+}
+.volume_slider {
+    width: 12vw;
+    grid-area: a;
+}
+.track_slider {
+    grid-area: b;
+}
+.control_buttons {
+    grid-area: c;
+}
+.track_art {
+    grid-area: d;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.track_art img {
+    width: 20vw;
+    border-radius: 10px;
+}
+.track_name {
+    grid-area: e;
+}
+.track_artist {
+    grid-area: f;
+}
+.player_buttons {
+    grid-area: g;
 }
