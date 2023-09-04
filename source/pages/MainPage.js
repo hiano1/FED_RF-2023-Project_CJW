@@ -1,7 +1,7 @@
-import Component from "./core/Component.js";
-import Carousel from "./components/Slider3d.js";
+import Component from "../core/Component.js";
+import Carousel from "../components/Slider3d.js";
 
-export default class App2 extends Component {
+export default class MainPage extends Component {
     setup() {}
 
     template() {

@@ -280,10 +280,14 @@
 
             track_info.addEventListener("click", (e) => {
                 // 해당 곡의 앨범 페이지로 이동 (album id ,scrollpage)
+                //이미 있는 페이지 load시 페이지만 이동
             });
             player_close_button.addEventListener("click", (e) => {
                 //노래 중지, 플레이어 창 제거 및 updateTimer, curr_track 등 초기화
             });
+            // 페이지에서 곡 재생시 받아오는 부분 작업 필요
+            // track_slider 개선 필요
+            // track_list list<map> 형태로 외부 저장
 
             loadTrack(track_index);
         </script>

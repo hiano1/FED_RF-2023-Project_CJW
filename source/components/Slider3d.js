@@ -1,5 +1,6 @@
 import Component from "../core/Component.js";
 import App from "../App.js";
+import MusicPlayer from "./MusicPlayer.js";
 
 export default class Slider3D extends Component {
     template() {
@@ -20,9 +21,10 @@ export default class Slider3D extends Component {
                 <button class="next-button">Next</button>
             </p>
         </div>              
+        <button class="goMain">페이지 이동</button>
+        <button class="goMain2">페이지 이동2</button>
     `;
     }
-    // <button class="goMain">페이지 이동</button>
 
     setEvent() {
         const carousel = document.querySelector(".carousel");
@@ -64,6 +66,10 @@ export default class Slider3D extends Component {
         this.addEvent("click", ".goMain", (e) => {
             // e.preventDefault();
             new App(document.querySelector("#app"));
+        });
+        this.addEvent("click", ".goMain2", (e) => {
+            // e.preventDefault();
+            new MusicPlayer(document.querySelector("#fixed"), cellWidth);
         });
 
         //드래그 진행중...
