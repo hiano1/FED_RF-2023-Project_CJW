@@ -36,7 +36,7 @@ body::-webkit-scrollbar {
     display: flex;
     flex-direction: column;
     row-gap: 4vh;
-    z-index: 1;
+    z-index: 10;
 }
 .layout .section-stick .stick,
 .layout .section-stick .active {
@@ -83,9 +83,12 @@ body::-webkit-scrollbar {
 .layout .s1 {
     background-color: #4d2536;
     transform: translateY(0);
+    z-index: 3;
 }
 .layout .s2 {
     background-color: #02486b;
+    transform: translateY(95vh);
+    z-index: 2;
 }
 .layout .s3 {
     background-color: #171716;

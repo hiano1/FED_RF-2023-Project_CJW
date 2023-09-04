@@ -73,13 +73,6 @@ body {
 }
 
 /* Define the slider width so that it scales properly */
-.slider_container {
-    width: 75%;
-    max-width: 400px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
 
 /* Modify the appearance of the slider */
 .seek_slider,
@@ -140,30 +133,25 @@ i.fa-step-backward {
     cursor: pointer;
 }
 
-.fixedPlayerWarp {
-    background-color: cadetblue;
-    position: fixed;
-    bottom: 0;
-
-    width: 100vw;
-    height: 15vh;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
 .fixedPlayer {
-    width: 90%;
-    height: 95%;
+    background-color: rgb(36, 36, 36);
+    color: rgb(240, 240, 240);
+    position: fixed;
+    left: 0;
+    bottom: 0;
     display: grid;
     grid-template:
-        "a b c" 1fr
-        "d e e" 2fr
-        "d f g " 1fr/
-        1fr 3fr 1fr;
+        "a a a" 1fr
+        "b c d" auto/
+        1fr 1fr 1fr;
+    width: 100vw;
+    height: 100px;
+    z-index: 1000;
 }
-.slider_container {
+.track_slider_container {
+    grid-area: a;
+    width: 100%;
+    height: 10px;
     font-size: 1vw;
     display: flex;
     justify-content: center;
@@ -180,32 +168,66 @@ i.fa-step-backward {
     -webkit-transition: 0.2s;
     transition: opacity 0.2s;
 }
+.track_slider {
+    width: 100%;
+}
 .volume_slider {
     width: 12vw;
-    grid-area: a;
 }
-.track_slider {
+.track_info {
     grid-area: b;
-}
-.control_buttons {
-    grid-area: c;
+    display: flex;
 }
 .track_art {
-    grid-area: d;
+    padding: 5px;
     display: flex;
     align-items: center;
     justify-content: center;
 }
 .track_art img {
-    width: 20vw;
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
     border-radius: 10px;
 }
+.title_box {
+    width: 100%;
+    padding-left: 1vw;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
 .track_name {
-    grid-area: e;
+    display: flex;
+    align-items: center;
+    height: 60%;
+    font-size: 3vh;
 }
 .track_artist {
-    grid-area: f;
+    height: 40%;
+    font-size: 2vh;
+    color: rgb(179, 179, 179);
 }
 .player_buttons {
-    grid-area: g;
+    grid-area: c;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+.etc_container {
+    grid-row: d;
+    display: flex;
+    align-items: center;
+}
+.volume_slider_container {
+    width: 100%;
+    display: flex;
+    justify-content: right;
+    align-items: center;
+}
+.volume_slider {
+    max-width: 100px;
+    margin-right: 30px;
+}
+.player_close_button {
+    width: 80px;
 }
