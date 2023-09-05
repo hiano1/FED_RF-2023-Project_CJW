@@ -1,9 +1,484 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-  </head>
-  <body></body>
+<!doctype html>
+<html lang="en" class="fontawesome-i2svg-active fontawesome-i2svg-complete">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+
+        <style>
+            * {
+                box-sizing: border-box;
+            }
+
+            body {
+                font-family: sans-serif;
+                text-align: center;
+                background-color: rgb(20, 20, 20);
+            }
+            .scene {
+                width: 95vw;
+                height: 80vh;
+                margin: 5vw auto;
+                perspective: 1000px;
+            }
+
+            .carousel {
+                position: relative;
+                width: 100%;
+                height: 100%;
+                transform-style: preserve-3d;
+                transition: transform 1s;
+            }
+            .carousel_cell {
+                position: absolute;
+                display: flex;
+                width: 100%;
+                height: 100%;
+                background-color: rgb(20, 20, 20);
+                border-radius: 50px;
+                text-align: center;
+                transition: transform 1s;
+                overflow: hidden;
+            }
+            .album_list {
+                width: 50%;
+                position: relative;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+            }
+            .album_list > div {
+                position: absolute;
+                width: 90%;
+                height: 50%;
+            }
+            .album_list > div:nth-child(1) {
+                top: 35%;
+                z-index: 3;
+            }
+            .album_list > div:nth-child(2) {
+                top: 20%;
+                z-index: 2;
+            }
+            .album_list > div:nth-child(3) {
+                top: 5%;
+                z-index: 1;
+            }
+
+            .album_art {
+                width: 80%;
+                aspect-ratio: 1 / 1;
+                background-color: green;
+                background-image: url(../resource/art01.jpg);
+                border-radius: 15px;
+
+                background-size: cover;
+            }
+            .album_text {
+                width: 80%;
+                margin-top: 5px;
+                border-radius: 15px;
+                background-color: rgb(51, 51, 51);
+                color: rgb(230, 230, 230);
+            }
+
+            .artist_img {
+                width: 50%;
+                background-image: linear-gradient(
+                        to left,
+                        rgba(20, 20, 20, 0) 0%,
+                        rgba(20, 20, 20, 0.25) 25%,
+                        rgba(20, 20, 20, 0.5) 50%,
+                        rgba(20, 20, 20, 0.6) 75%,
+                        rgba(20, 20, 20, 1) 100%
+                    ),
+                    url("../resource/img/ariana.webp");
+                background-size: cover;
+                filter: grayscale();
+            }
+            .slider {
+                position: absolute;
+                top: 0;
+                left: -50%;
+                width: 100%;
+                height: 100%;
+            }
+            .circular-slider {
+                width: 100%;
+                height: 100%;
+                overflow: hidden;
+                display: flex;
+                justify-content: center;
+                align-items: flex-end;
+            }
+            .wrapper {
+                display: flex;
+                justify-content: center;
+                position: relative;
+                box-sizing: border-box;
+                padding: 0;
+                color: white;
+            }
+            .circular-slider .wrapper .controls__left,
+            .circular-slider .wrapper .controls__right,
+            .circular-slider .wrapper .controls__autoplay {
+                position: absolute;
+                z-index: 101;
+                transition: 0.6s all;
+            }
+            .icon-wrapper {
+                color: white;
+                font-size: 1.5em;
+            }
+            .circular-slider .wrapper .controls__left,
+            .circular-slider .wrapper .controls__right {
+                top: 50%;
+            }
+            .circular-slider .wrapper .controls__left {
+                left: 0;
+            }
+            .circular-slider .wrapper .controls__left:hover {
+                left: 0;
+            }
+            .circular-slider .wrapper .controls__right {
+                right: 0;
+            }
+            .circular-slider .wrapper .controls__autoplay {
+                bottom: 0;
+                left: 50%;
+            }
+
+            .circular-slider .wrapper .slides-holder {
+                border-radius: 50%;
+                border: 2px solid #8eb8e5;
+                transform-origin: center;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                position: relative;
+                z-index: 100;
+            }
+            .circular-slider .wrapper .slides-holder__item {
+                border-radius: 50%;
+                border: 2px solid #7c99b4;
+                position: absolute;
+                transform-origin: center;
+                background-color: #222;
+                transition: 0.3s linear all;
+                filter: brightness(70%);
+            }
+            .circular-slider .wrapper .slides-holder__item img {
+                width: 100%;
+                height: 100%;
+                border-radius: 50%;
+                user-select: none;
+            }
+            .circular-slider .wrapper .slides-holder__item_active {
+                filter: brightness(100%);
+            }
+            .circular-slider .wrapper .descriptions {
+                position: absolute;
+                bottom: 0%;
+                z-index: 0;
+            }
+            .circular-slider .wrapper .descriptions__item {
+                width: 100%;
+                height: 0%;
+                opacity: 0;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                transition: opacity 0s 0s linear;
+            }
+            .circular-slider .wrapper .descriptions__item_visible {
+                height: 100%;
+                opacity: 1;
+                transition: opacity 0.6s 0s linear;
+            }
+            .circular-slider .wrapper .descriptions__item h1,
+            .circular-slider .wrapper .descriptions__item .description {
+                color: white;
+                text-align: center;
+            }
+            .circular-slider .wrapper .descriptions__item h1 {
+                font-size: 200%;
+                padding-top: 5px;
+            }
+            .circular-slider .wrapper .descriptions__item .description {
+                font-size: 100%;
+                margin-top: 5px;
+                padding: 0% 10%;
+                text-overflow: ellipsis;
+                overflow: hidden;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="slider">
+            <div class="circular-slider circular-slider-demo">
+                <div class="wrapper">
+                    <div class="controls">
+                        <div class="controls__left">
+                            <div class="icon-wrapper">bbbbbbbbbb</div>
+                        </div>
+                        <div class="controls__right">
+                            <div class="icon-wrapper">aaaaaaaa</div>
+                        </div>
+                        <div
+                            class="controls__autoplay controls__autoplay_running"
+                        >
+                            <div class="icon-wrapper">
+                                <div class="pause">
+                                    <i class="far fa-pause-circle"></i>
+                                </div>
+                                <div class="run">
+                                    <i class="far fa-play-circle"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="slides-holder">
+                        <div
+                            class="slides-holder__item slides-holder__item_active"
+                        >
+                            1
+                        </div>
+                        <div class="slides-holder__item">a</div>
+                        <div class="slides-holder__item">b</div>
+                        <div class="slides-holder__item">c</div>
+                        <div class="slides-holder__item">d</div>
+                        <div class="slides-holder__item">e</div>
+                    </div>
+                    <div class="descriptions">
+                        <div
+                            class="descriptions__item descriptions__item_visible"
+                        >
+                            <h1>Slide 1</h1>
+                            <p class="description">Desc 1</p>
+                        </div>
+                        <div class="descriptions__item">
+                            <
+                            <h1>Slide 2</h1>
+                            <p class="description">Desc 2</p>
+                        </div>
+                        <div class="descriptions__item">
+                            <h1>Slide 3</h1>
+                            <p class="description">Desc 3</p>
+                        </div>
+                        <div class="descriptions__item">
+                            <h1>Slide 4</h1>
+                            <p class="description">Desc 4</p>
+                        </div>
+                        <div class="descriptions__item">
+                            <h1>Slide 5</h1>
+                            <p class="description">Desc 1</p>
+                        </div>
+                        <div class="descriptions__item">
+                            <h1>Slide 6</h1>
+                            <p class="description">Desc 1</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="scene">
+            <div class="carousel">
+                <div class="carousel_cell">
+                    <div class="album_list"></div>
+                    <div class="artist_img"></div>
+                </div>
+            </div>
+        </div>
+    </body>
+    <script>
+        let slider = document.querySelector(".circle_slider");
+
+        let sliderSize = parseFloat(80) / 100;
+        let slideSize = parseFloat(10) / 100;
+        let animationDuration = parseFloat(600);
+        let currentAngle = 0;
+        let currentSlide = 0;
+        let autoplay = null;
+        let timer;
+
+        let wrapper = document.querySelector(".wrapper");
+        let slides = document.querySelectorAll(".slides-holder__item");
+        let descriptionsHolder = document.querySelector(".descriptions");
+        let descriptions = document.querySelectorAll(".descriptions__item");
+        let slidesHolder = document.querySelector(".slides-holder");
+        let btnLeft = document.querySelector(".controls__left");
+        let btnRight = document.querySelector(".controls__right");
+        let btnAutoplay = document.querySelector(".controls__autoplay");
+
+        let stepAngle = (2 * Math.PI) / slides.length;
+
+        slidesHolder.style.transitionDuration = `${animationDuration}ms`;
+
+        btnAutoplay.onclick = function () {
+            if (sdlier.classList.contains("controls__autoplay_running")) {
+                sdlier.classList.remove("controls__autoplay_running");
+                sdlier.classList.add("controls__autoplay_paused");
+                clearInterval(autoplay);
+                autoplay = null;
+            } else {
+                sdlier.classList.remove("controls__autoplay_paused");
+                sdlier.classList.add("controls__autoplay_running");
+                setAutoplay();
+            }
+        };
+
+        function onresize() {
+            let radius,
+                w = wrapper.parentNode.getBoundingClientRect().width,
+                h = wrapper.parentNode.getBoundingClientRect().height;
+
+            2 * h <= w
+                ? (radius = h * sliderSize)
+                : (radius = (w / 2) * sliderSize);
+
+            setSize(Math.round(radius));
+        }
+        onresize();
+        function setSize(radius) {
+            wrapper.style.width = `${radius * 2}px`;
+            wrapper.style.height = `${radius * 2}px`;
+
+            let r = 2 * radius * (1 - slideSize);
+            slidesHolder.style.width = `${r}px`;
+            slidesHolder.style.height = `${r}px`;
+            slidesRepositioning(r / 2);
+
+            // slidesHolder.style.marginTop = radius * slideSize + "px";
+            descriptionsHolder.style.width = (r / 2 - r * slideSize) * 2 + "px";
+            descriptionsHolder.style.height = r / 2 - r * slideSize + "px";
+
+            // slidesSize = Math.min(
+            //     2 * radius * slideSize,
+            //     stepAngle * radius * (1 - slideSize) - 50,
+            // );
+            slidesSize = stepAngle * radius * (1 - slideSize) - 200;
+
+            descriptionsHolder.style.fontSize =
+                window.innerHeight < window.innerWidth ? "1.2vh" : "1.2vw";
+            for (let i = 0; i < slides.length; i++) {
+                slides[i].style.width = slides[i].style.height =
+                    slidesSize + "px";
+            }
+        }
+        function slidesRepositioning(radius) {
+            for (let i = 0; i < slides.length; i++) {
+                let x = radius * Math.cos(stepAngle * i - Math.PI / 2),
+                    y = radius * Math.sin(stepAngle * i - Math.PI / 2);
+                slides[i].style.transform = `translate(${x}px,${y}px) rotate(${
+                    ((stepAngle * 180) / Math.PI) * i
+                }deg)`;
+            }
+        }
+        function rotate(multiplier) {
+            removeStyle();
+            resetNavs();
+
+            if (currentSlide === slides.length - 1 && multiplier === -1) {
+                slidesHolder.style.transform = "rotate( -360deg )";
+                currentSlide = 0;
+                currentAngle = 0;
+                addStyle();
+
+                setTimeout(() => {
+                    slidesHolder.style.transitionDuration = 0 + "s";
+                    slidesHolder.style.transform = `rotate(${currentAngle}deg)`;
+                    setTimeout(function () {
+                        slidesHolder.style.transitionDuration =
+                            animationDuration + "ms";
+                    }, 20);
+                }, animationDuration);
+            } else if (currentSlide === 0 && multiplier === 1) {
+                slidesHolder.style.transform = `rotate(${
+                    (stepAngle * 180) / Math.PI
+                }deg )`;
+                currentSlide = slides.length - 1;
+                currentAngle = (-(2 * Math.PI - stepAngle) * 180) / Math.PI;
+                addStyle();
+
+                setTimeout(function () {
+                    slidesHolder.style.transitionDuration = 0 + "s";
+                    slidesHolder.style.transform = `rotate(${currentAngle}deg)`;
+                    setTimeout(function () {
+                        slidesHolder.style.transitionDuration =
+                            animationDuration + "ms";
+                    }, 20);
+                }, animationDuration);
+            } else {
+                currentSlide -= multiplier;
+                currentAngle += ((stepAngle * 180) / Math.PI) * multiplier;
+                slidesHolder.style.transform = `rotate(${currentAngle}deg)`;
+                addStyle();
+            }
+        }
+        function setNav() {
+            btnLeft.onclick = function () {
+                rotate(1);
+            };
+            btnRight.onclick = function () {
+                rotate(-1);
+            };
+        }
+        function disableNav() {
+            btnLeft.onclick = null;
+            btnRight.onclick = null;
+        }
+        function setAutoplay() {
+            autoplay = setInterval(function () {
+                rotate(-1);
+            }, autoplayInterval + 20);
+        }
+        function removeStyle() {
+            let x = currentSlide;
+
+            descriptions[x].classList.remove("descriptions__item_visible");
+            slides[x].classList.remove("slides-holder__item_active");
+            slides[x].style.height = slides[x].style.width = slidesSize + "px";
+        }
+        function addStyle() {
+            let x = currentSlide;
+
+            descriptions[x].classList.add("descriptions__item_visible");
+            slides[x].classList.add("slides-holder__item_active");
+            slides[x].style.height = slides[x].style.width =
+                slidesSize + 40 + "px";
+        }
+        function resetNavs() {
+            disableNav();
+            setTimeout(function () {
+                setNav();
+            }, animationDuration + 20);
+            if (autoplay != null) {
+                clearInterval(autoplay);
+                setAutoplay();
+            }
+        }
+        setTimeout(() => {
+            btnRight.addEventListener("click", () => {
+                rotate(-1);
+            });
+        }, animationDuration);
+        setTimeout(() => {
+            btnLeft.addEventListener("click", () => {
+                rotate(1);
+            });
+        }, animationDuration);
+
+        window.onresize = () => {
+            clearTimeout(timer);
+            timer = setTimeout(() => {
+                console.log("a");
+                for (let i = 0; i < sliders.length; i++) {
+                    sliders[i].resetNavs();
+                    sliders[i].onResize();
+                }
+            }, 100);
+        };
+    </script>
 </html>

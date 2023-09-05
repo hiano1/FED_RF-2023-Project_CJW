@@ -17,7 +17,7 @@ export default class MusicPlayer extends Component {
         </div>
         <div class="track_info">
             <div class="track_art">
-                <img src="../resource/art01.jpg" alt="" />
+                <img src="./source/resource/art01.jpg" alt="" />
             </div>
             <div class="title_box">
                 <div class="track_name">
@@ -133,13 +133,13 @@ export default class MusicPlayer extends Component {
                 name: "Night Owl",
                 artist: "Broke For Free",
                 image: "Image URL",
-                path: "../resource/test_music.mp3",
+                path: "./source/resource/test_music.mp3",
             },
             {
                 name: "Enthusiast",
                 artist: "Tours",
                 image: "Image URL",
-                path: "../resource/colabs-hero.mp4",
+                path: "../source/resource/colabs-hero.mp4",
             },
             {
                 name: "Shipping Lanes",
