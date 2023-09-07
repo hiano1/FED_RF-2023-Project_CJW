@@ -13,40 +13,40 @@ export default class CircleSlider extends Component {
                     <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24" fill="#F9F8F6"><path d="M480-345 240-585l56-56 184 184 184-184 56 56-240 240Z"/></svg>
                 </div>
             </div>
-            <div class="slides-holder">
-                <div class="slides-holder__item slides-holder__item_active">
+            <div class="circle_warper">
+                <div class="circle_item slides-holder__item_active">
                     1
                 </div>
-                <div class="slides-holder__item">a</div>
-                <div class="slides-holder__item">b</div>
-                <div class="slides-holder__item">c</div>
-                <div class="slides-holder__item">d</div>
-                <div class="slides-holder__item">e</div>
+                <div class="circle_item">a</div>
+                <div class="circle_item">b</div>
+                <div class="circle_item">c</div>
+                <div class="circle_item">d</div>
+                <div class="circle_item">e</div>
             </div>
-            <div class="descriptions">
-                <div class="descriptions__item descriptions__item_visible">
+            <div class="circle_info_item">
+                <div class="circle_info_item active">
                     <h1>Slide 1</h1>
-                    <p class="description">Desc 1</p>
+                    <p class="circle_info_title">Desc 1</p>
                 </div>
-                <div class="descriptions__item">
+                <div class="circle_info_item">
                     <h1>Slide 2</h1>
-                    <p class="description">Desc 2</p>
+                    <p class="circle_info_title">Desc 2</p>
                 </div>
-                <div class="descriptions__item">
+                <div class="circle_info_item">
                     <h1>Slide 3</h1>
-                    <p class="description">Desc 3</p>
+                    <p class="circle_info_title">Desc 3</p>
                 </div>
-                <div class="descriptions__item">
+                <div class="circle_info_item">
                     <h1>Slide 4</h1>
-                    <p class="description">Desc 4</p>
+                    <p class="circle_info_title">Desc 4</p>
                 </div>
-                <div class="descriptions__item">
+                <div class="circle_info_item">
                     <h1>Slide 5</h1>
-                    <p class="description">Desc 1</p>
+                    <p class="circle_info_title">Desc 1</p>
                 </div>
-                <div class="descriptions__item">
+                <div class="circle_info_item">
                     <h1>Slide 6</h1>
-                    <p class="description">Desc 1</p>
+                    <p class="circle_info_title">Desc 1</p>
                 </div>
             </div>
         </div>
@@ -55,6 +55,7 @@ export default class CircleSlider extends Component {
     }
 
     setEvents() {
+        let circle_slider = document.querySelector(".circle_slider");
         let slider = document.querySelector(".slider");
         let slideSize = 0.2;
         let slidesSize;
@@ -63,42 +64,41 @@ export default class CircleSlider extends Component {
         let currentSlide = 0;
         let timer;
 
-        let wrapper = document.querySelector(".wrapper");
-        let slides = document.querySelectorAll(".slides-holder__item");
-        let descriptionsHolder = document.querySelector(".descriptions");
-        let descriptions = document.querySelectorAll(".descriptions__item");
-        let slidesHolder = document.querySelector(".slides-holder");
+        let slides = document.querySelectorAll(".circle_item");
+        let circle_info = document.querySelector(".circle_info_item");
+        let circle_info_item = document.querySelectorAll(".circle_info_item");
+        let circle_warper = document.querySelector(".circle_warper");
         let btnLeft = document.querySelector(".controls__left");
         let btnRight = document.querySelector(".controls__right");
 
         let stepAngle = (2 * Math.PI) / slides.length;
 
-        slidesHolder.style.transitionDuration = `${animationDuration}ms`;
+        circle_warper.style.transitionDuration = `${animationDuration}ms`;
 
-        function slideResize() {
+        function circleResize() {
             let radius,
-                w = slider.getBoundingClientRect().width,
-                h = slider.getBoundingClientRect().height;
+                w = circle_slider.getBoundingClientRect().width,
+                h = circle_slider.getBoundingClientRect().height;
 
             w > h ? (radius = w / 2) : (radius = h / 1.6);
 
-            setSlideSize(Math.round(radius));
+            setCircleSize(Math.round(radius));
         }
-        function setSlideSize(radius) {
-            wrapper.style.width = `${radius * 2}px`;
-            wrapper.style.height = `${radius * 2}px`;
+        function setCircleSize(radius) {
+            circle_warper.style.width = `${radius * 2}px`;
+            circle_warper.style.height = `${radius * 2}px`;
 
             let r = 2 * radius * (1 - slideSize);
-            slidesHolder.style.width = `${r}px`;
-            slidesHolder.style.height = `${r}px`;
+            circle_warper.style.width = `${r}px`;
+            circle_warper.style.height = `${r}px`;
             slidesRepositioning(r / 2);
 
-            descriptionsHolder.style.width = (r / 2 - r * slideSize) * 2 + "px";
-            descriptionsHolder.style.height = r / 2 - r * slideSize + "px";
+            circle_info.style.width = (r / 2 - r * slideSize) * 2 + "px";
+            circle_info.style.height = r / 2 - r * slideSize + "px";
 
             slidesSize = Math.max(stepAngle * radius * (1 - slideSize) - 200);
 
-            descriptionsHolder.style.fontSize =
+            circle_info.style.fontSize =
                 window.innerHeight < window.innerWidth ? "1.2vh" : "1.2vw";
             for (let i = 0; i < slides.length; i++) {
                 slides[i].style.width = slides[i].style.height =
@@ -118,21 +118,21 @@ export default class CircleSlider extends Component {
             removeStyle();
 
             if (currentSlide === slides.length - 1 && multiplier === -1) {
-                slidesHolder.style.transform = "rotate( -360deg )";
+                circle_warper.style.transform = "rotate( -360deg )";
                 currentSlide = 0;
                 currentAngle = 0;
                 addActiveStyle();
 
                 setTimeout(() => {
-                    slidesHolder.style.transitionDuration = 0 + "s";
-                    slidesHolder.style.transform = `rotate(${currentAngle}deg)`;
+                    circle_warper.style.transitionDuration = 0 + "s";
+                    circle_warper.style.transform = `rotate(${currentAngle}deg)`;
                     setTimeout(function () {
-                        slidesHolder.style.transitionDuration =
+                        circle_warper.style.transitionDuration =
                             animationDuration + "ms";
                     }, 20);
                 }, animationDuration);
             } else if (currentSlide === 0 && multiplier === 1) {
-                slidesHolder.style.transform = `rotate(${
+                circle_warper.style.transform = `rotate(${
                     (stepAngle * 180) / Math.PI
                 }deg )`;
                 currentSlide = slides.length - 1;
@@ -140,17 +140,17 @@ export default class CircleSlider extends Component {
                 addActiveStyle();
 
                 setTimeout(function () {
-                    slidesHolder.style.transitionDuration = 0 + "s";
-                    slidesHolder.style.transform = `rotate(${currentAngle}deg)`;
+                    circle_warper.style.transitionDuration = 0 + "s";
+                    circle_warper.style.transform = `rotate(${currentAngle}deg)`;
                     setTimeout(function () {
-                        slidesHolder.style.transitionDuration =
+                        circle_warper.style.transitionDuration =
                             animationDuration + "ms";
                     }, 20);
                 }, animationDuration);
             } else {
                 currentSlide -= multiplier;
                 currentAngle += ((stepAngle * 180) / Math.PI) * multiplier;
-                slidesHolder.style.transform = `rotate(${currentAngle}deg)`;
+                circle_warper.style.transform = `rotate(${currentAngle}deg)`;
                 addActiveStyle();
             }
         }
@@ -158,14 +158,14 @@ export default class CircleSlider extends Component {
         function removeStyle() {
             let x = currentSlide;
 
-            descriptions[x].classList.remove("descriptions__item_visible");
+            circle_info_item[x].classList.remove("active");
             slides[x].classList.remove("slides-holder__item_active");
             slides[x].style.height = slides[x].style.width = slidesSize + "px";
         }
         function addActiveStyle() {
             let x = currentSlide;
 
-            descriptions[x].classList.add("descriptions__item_visible");
+            circle_info_item[x].classList.add("active");
             slides[x].classList.add("slides-holder__item_active");
             slides[x].style.height = slides[x].style.width =
                 slidesSize + 40 + "px";
@@ -181,12 +181,12 @@ export default class CircleSlider extends Component {
                 slideRotate(1);
             });
         }, animationDuration);
-        slideResize();
+        circleResize();
 
         window.onresize = () => {
             clearTimeout(timer);
             timer = setTimeout(() => {
-                slideResize();
+                circleResize();
             }, 200);
         };
     }

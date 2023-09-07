@@ -1,18 +1,8 @@
-* {
-    box-sizing: border-box;
-}
-
-body {
-    font-family: sans-serif;
-    text-align: center;
-    background-color: rgb(28, 28, 28);
-}
-
 .scene {
-    width: 95vw;
-    height: 80vh;
-    margin: 5vw auto;
+    width: 100vw;
+    height: 100vh;
     perspective: 1000px;
+    justify-self: center;
     background-color: rgb(28, 28, 28);
 }
 
@@ -65,4 +55,13 @@ body {
     background-size: cover;
     filter: grayscale();
     z-index: 0;
+}
+.carousel_control {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2vw;
+    position: absolute;
+    right: 2vw;
+    bottom: 0;
+    color: white;
 }
