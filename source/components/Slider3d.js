@@ -23,6 +23,7 @@ export default class Slider3D extends Component {
             .map(
                 (item, index) => `
                 <div class="circle_item ${index == 0 ? "active" : ""}">
+                    <img src="./source/resource/art01.jpg"/>
                     <div class="circle_prev">
                         <svg xmlns="http://www.w3.org/2000/svg" height="80" viewBox="0 -960 960 960" width="80" fill="#F9F8F6"><path d="m296-345-56-56 240-240 240 240-56 56-184-184-184 184Z"/></svg>
                     </div>
@@ -190,6 +191,11 @@ export default class Slider3D extends Component {
         });
         this.addEvent("click", ".circle_next", () => {
             slideRotate(1);
+        });
+        this.addEvent("mouseover", ".circle_item img", (e) => {
+            console.log(this.$target);
+            console.log("a");
+            // this.$target.style.animation = "rotate 3s infinite";
         });
 
         //default setting
