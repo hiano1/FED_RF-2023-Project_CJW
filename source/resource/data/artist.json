@@ -1,0 +1,101 @@
+{
+    "artists": [
+        {
+            "name": "Ariana Grande",
+            "image": "",
+            "albums": [
+                {
+                    "title": "Yours Truly",
+                    "albumArt": "",
+                    "introlink": "",
+                    "introtext": "",
+                    "release": "2013.01.01",
+                    "genre": "POP",
+                    "description": "큰 눈망울의 아리따운 차세대 디바, 아리아나 그란데(Ariana Grande) 머라이어 캐리를 떠올리게 하는 음색과 아름다운 외모로 2013년을 가장 밝게 빛낼 차세대 디바, 아리아나 그란데의 데뷔 앨범 [Yours Truly]. 시원한 가창력으로 머라이어 캐리를 잇는 차세대 디바 1순위로 손꼽히는 아리아나 그란데가 드디어 데뷔 앨범을 발매한다.앨범의 첫 싱글 The Way가 발매하자마자 아이튠스 1위를 차지하는 등 제2의 머라이어 캐리로 큰 화제가 된 그녀는 차분하고 편안한 보컬은 물론이고 폭발하는 듯한 시원한 가창력이 돋보인다.",
+                    "linkkeyword": "",
+                    "trackList": [
+                        {
+                            "name": "Honeymoon Avenue",
+                            "artist": "Ariana Grande",
+                            "link": "https://www.youtube.com/embed/_tJM74eZy04?si=gBq6lpsjceZkTxyS&amp;controls=0"
+                        },
+                        {
+                            "name": "Baby I",
+                            "artist": "Ariana Grande",
+                            "link": ""
+                        },
+                        {
+                            "name": "Right There (Feat. Big Sean)",
+                            "artist": "Ariana Grande",
+                            "link": ""
+                        },
+                        {
+                            "name": "Tattooed Heart",
+                            "artist": "Ariana Grande",
+                            "link": ""
+                        },
+                        {
+                            "name": "Lovin' It",
+                            "artist": "Ariana Grande",
+                            "link": ""
+                        },
+                        {
+                            "name": "Piano",
+                            "artist": "Ariana Grande",
+                            "link": ""
+                        },
+                        {
+                            "name": "Daydreamin",
+                            "artist": "Ariana Grande",
+                            "link": ""
+                        },
+                        {
+                            "name": "The Way (Feat. Mac Miller)",
+                            "artist": "Ariana Grande",
+                            "link": ""
+                        },
+                        {
+                            "name": "You'll Never Know",
+                            "artist": "Ariana Grande",
+                            "link": ""
+                        },
+                        {
+                            "name": "Almost Is Never Enough",
+                            "artist": "Ariana Grande",
+                            "link": ""
+                        },
+                        {
+                            "name": "Popular Song",
+                            "artist": "Ariana Grande",
+                            "link": ""
+                        },
+                        {
+                            "name": "Better Left Unsaid",
+                            "artist": "Ariana Grande",
+                            "link": ""
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Ariana Grande2",
+            "image": "",
+            "albums": [
+                {
+                    "title": "",
+                    "albumArt": "",
+                    "introlink": "",
+                    "introtext": "",
+                    "release": "",
+                    "genre": "",
+                    "description": "",
+                    "linkkeyword": "",
+                    "trackList": [
+                        { "name": "", "artist": "", "time": "", "link": "" }
+                    ]
+                }
+            ]
+        }
+    ]
+}
