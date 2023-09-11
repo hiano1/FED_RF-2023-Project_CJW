@@ -41,6 +41,10 @@ body {
     text-align: center;
     background-color: rgb(28, 28, 28);
     overflow: hidden;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-use-select: none;
+    user-select: none;
 }
 
 /* Extra options you might want to consider*/

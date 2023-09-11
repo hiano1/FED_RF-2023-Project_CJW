@@ -220,12 +220,13 @@ export default class Slider3D extends Component {
             currentAngle += stepAngle * -index;
             circle_warper.style.transform = `rotate(${currentAngle}deg)`;
 
+            let cai = currentAngle / 60;
             circle_items[currentSlide].style.transform =
-                rotatePositionList[(0 - currentAngle / 60) % 6];
+                rotatePositionList[(0 - cai) % 6];
             circle_items[nextSlide].style.transform =
-                rotatePositionList[(1 - currentAngle / 60) % 6];
+                rotatePositionList[(1 - cai) % 6];
             circle_items[previousSlide].style.transform =
-                rotatePositionList[(5 - currentAngle / 60) % 6];
+                rotatePositionList[(5 - cai) % 6];
 
             circle_items[currentSlide].classList.add("active");
             circle_items[nextSlide].classList.add("next");
@@ -242,6 +243,11 @@ export default class Slider3D extends Component {
                 slideIndex += index;
             }
             return slideIndex;
+        }
+
+        function positionCheck(index, angle) {
+            let result = (index - angle / 60) % 6;
+            let a = Math.sign(result);
         }
 
         this.addEvent("click", ".circle_prev", () => {
