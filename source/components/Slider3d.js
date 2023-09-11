@@ -184,28 +184,28 @@ export default class Slider3D extends Component {
         }
 
         function slideRotate(index) {
-            circle_items[previousSlide].classList.remove("prev");
             circle_items[currentSlide].classList.remove("active");
-            circle_info_item[currentSlide].classList.remove("active");
             circle_items[nextSlide].classList.remove("next");
-
-            previousSlide = currentSlide;
+            circle_items[previousSlide].classList.remove("prev");
+            circle_info_item[currentSlide].classList.remove("active");
 
             currentSlide = lengthCheck(currentSlide, index);
             nextSlide = lengthCheck(nextSlide, index);
+            previousSlide = lengthCheck(previousSlide, index);
 
             currentAngle += stepAngle * -index;
             circle_warper.style.transform = `rotate(${currentAngle}deg)`;
-            circle_info_item[currentSlide].classList.add("active");
+
             circle_items[currentSlide].classList.add("active");
             circle_items[nextSlide].classList.add("next");
             circle_items[previousSlide].classList.add("prev");
+            circle_info_item[currentSlide].classList.add("active");
         }
 
         function lengthCheck(slideIndex, index) {
             if (slideIndex == circle_items.length - 1 && index == 1) {
                 slideIndex = 0;
-            } else if (currentSlide == 0 && index == -1) {
+            } else if (slideIndex == 0 && index == -1) {
                 slideIndex = circle_items.length - 1;
             } else {
                 slideIndex += index;
