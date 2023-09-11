@@ -142,6 +142,7 @@ export default class Slider3D extends Component {
             cells[currSlide].classList.add("active");
 
             selectedIndex += index;
+
             let angle = theta * selectedIndex * -1;
             carousel.style.transform = `translateZ(${-radius}px) rotateY(${angle}deg)`;
         }
@@ -164,11 +165,11 @@ export default class Slider3D extends Component {
 
         this.addEvent("click", ".carousel_prev", () => {
             rotateCarousel(-1);
-            setAlbumList(selectedIndex);
+            setAlbumList(currSlide);
         });
         this.addEvent("click", ".carousel_next", () => {
             rotateCarousel(1);
-            setAlbumList(selectedIndex);
+            setAlbumList(currSlide);
         });
         this.addEvent("click", ".goMain", () => {
             new App(document.querySelector("#app"));
@@ -220,11 +221,11 @@ export default class Slider3D extends Component {
             circle_warper.style.transform = `rotate(${currentAngle}deg)`;
 
             circle_items[currentSlide].style.transform =
-                rotatePositionList[0 - currentAngle / 60];
+                rotatePositionList[(0 - currentAngle / 60) % 6];
             circle_items[nextSlide].style.transform =
-                rotatePositionList[1 - currentAngle / 60];
+                rotatePositionList[(1 - currentAngle / 60) % 6];
             circle_items[previousSlide].style.transform =
-                rotatePositionList[5 - currentAngle / 60];
+                rotatePositionList[(5 - currentAngle / 60) % 6];
 
             circle_items[currentSlide].classList.add("active");
             circle_items[nextSlide].classList.add("next");
