@@ -1414,73 +1414,194 @@
             "image": "",
             "albums": [
                 {
-                    "title": "Yours Truly",
-                    "albumArt": "",
+                    "title": "Coming To You Live",
+                    "albumArt": "https://i.namu.wiki/i/T_3v_nE1x748DL_X7YyFW7TFm8LZpLAXRGBBk-dE9ERelhbgQr7pk5QkyjLwx74a-COAqJAfqmF277tEzn-11a91ymG9Ik3gRMPsO7eDUDIF60NGbghMbMqulh00WIII_sU6XHN90ipDAA1Bamcmjw.webp",
                     "introlink": "",
                     "introtext": "",
-                    "release": "2013.01.01",
-                    "genre": "POP",
-                    "description": "큰 눈망울의 아리따운 차세대 디바, 아리아나 그란데(Ariana Grande) 머라이어 캐리를 떠올리게 하는 음색과 아름다운 외모로 2013년을 가장 밝게 빛낼 차세대 디바, 아리아나 그란데의 데뷔 앨범 [Yours Truly]. 시원한 가창력으로 머라이어 캐리를 잇는 차세대 디바 1순위로 손꼽히는 아리아나 그란데가 드디어 데뷔 앨범을 발매한다.앨범의 첫 싱글 The Way가 발매하자마자 아이튠스 1위를 차지하는 등 제2의 머라이어 캐리로 큰 화제가 된 그녀는 차분하고 편안한 보컬은 물론이고 폭발하는 듯한 시원한 가창력이 돋보인다.",
+                    "release": "2017.03.15",
+                    "genre": "RAP/HIPHAP",
+                    "description": "",
                     "linkkeyword": "",
                     "trackList": [
                         {
-                            "name": "Honeymoon Avenue",
-                            "artist": "Ariana Grande",
+                            "name": "Cheese & Wine",
+                            "artist": "DPR LIVE",
                             "link": "https://www.youtube.com/embed/_tJM74eZy04?si=gBq6lpsjceZkTxyS&amp;controls=0"
                         },
                         {
-                            "name": "Baby I",
-                            "artist": "Ariana Grande",
+                            "name": "Laputa (Feat. Crush)",
+                            "artist": "DPR LIVE",
                             "link": ""
                         },
                         {
-                            "name": "Right There (Feat. Big Sean)",
-                            "artist": "Ariana Grande",
+                            "name": "Right Here Right Now (Feat. 로꼬 & 박재범)",
+                            "artist": "DPR LIVE",
                             "link": ""
                         },
                         {
-                            "name": "Tattooed Heart",
-                            "artist": "Ariana Grande",
+                            "name": "Know Me (Feat. DEAN)",
+                            "artist": "DPR LIVE",
                             "link": ""
                         },
                         {
-                            "name": "Lovin' It",
-                            "artist": "Ariana Grande",
+                            "name": "Please (Feat. 김효은, G2 & DUMBFOUNDEAD) ",
+                            "artist": "DPR LIVE",
                             "link": ""
                         },
                         {
-                            "name": "Piano",
-                            "artist": "Ariana Grande",
+                            "name": "Interlude",
+                            "artist": "DPR LIVE",
                             "link": ""
                         },
                         {
-                            "name": "Daydreamin",
-                            "artist": "Ariana Grande",
+                            "name": "To Myself",
+                            "artist": "DPR LIVE",
+                            "link": ""
+                        }
+                    ]
+                },
+                {
+                    "title": "Her",
+                    "albumArt": "https://i.namu.wiki/i/pFKB8PHELPu_fDwqtE_oRPNK6fnXe6OYzKo0Kh_wveH0tkd_ShG-q4CuEUsy0zYy0FJB8Q7Tt_EfUOfyoHbEnbQMqrEXMQChf7GRirPdjxL1kvblvsDnK_MP7sCAmInp4XWHQGQWUzv5t2XjpZM5wg.webp",
+                    "introlink": "",
+                    "introtext": "",
+                    "release": "2017.12.07",
+                    "genre": "RAP/HIPHAP",
+                    "description": "",
+                    "linkkeyword": "",
+                    "trackList": [
+                        {
+                            "name": "Your Name? (Intro)",
+                            "artist": "DPR LIVE",
+                            "link": "https://www.youtube.com/embed/_tJM74eZy04?si=gBq6lpsjceZkTxyS&amp;controls=0"
+                        },
+                        {
+                            "name": "Jasmine",
+                            "artist": "DPR LIVE",
                             "link": ""
                         },
                         {
-                            "name": "The Way (Feat. Mac Miller)",
-                            "artist": "Ariana Grande",
+                            "name": "Text Me",
+                            "artist": "DPR LIVE",
                             "link": ""
                         },
                         {
-                            "name": "You'll Never Know",
-                            "artist": "Ariana Grande",
+                            "name": "Is You Down",
+                            "artist": "DPR LIVE",
                             "link": ""
                         },
                         {
-                            "name": "Almost Is Never Enough",
-                            "artist": "Ariana Grande",
+                            "name": "Martini Blue",
+                            "artist": "DPR LIVE",
+                            "link": ""
+                        }
+                    ]
+                },
+                {
+                    "title": "IS ANYBODY OUT THERE?",
+                    "albumArt": "https://i.namu.wiki/i/R874CTdNQMzcBVhjai2NVVJ0CIGB0QyWs311Xv0sVjIatuSLqyjFSftU6HnlaDba-5VvRUN_ydjbAHILmv1kBqFkLqdWgJOHnWmyXEs-hCUIHWEvY-4OXmat2sZJVDsTid7LNXYngl3cgpbFan6lZA.webp",
+                    "introlink": "",
+                    "introtext": "",
+                    "release": "2020.03.03",
+                    "genre": "RAP/HIPHAP",
+                    "description": "",
+                    "linkkeyword": "",
+                    "trackList": [
+                        {
+                            "name": "HERE GOES NOTHING",
+                            "artist": "DPR LIVE",
+                            "link": "https://www.youtube.com/embed/_tJM74eZy04?si=gBq6lpsjceZkTxyS&amp;controls=0"
+                        },
+                        {
+                            "name": "GERONIMO!",
+                            "artist": "DPR LIVE",
                             "link": ""
                         },
                         {
-                            "name": "Popular Song",
-                            "artist": "Ariana Grande",
+                            "name": "TO WHOEVER",
+                            "artist": "DPR LIVE",
                             "link": ""
                         },
                         {
-                            "name": "Better Left Unsaid",
-                            "artist": "Ariana Grande",
+                            "name": "OUT OF CONTROL",
+                            "artist": "DPR LIVE",
+                            "link": ""
+                        },
+                        {
+                            "name": "DISCONNECT",
+                            "artist": "DPR LIVE",
+                            "link": ""
+                        },
+                        {
+                            "name": "S.O.S",
+                            "artist": "DPR LIVE",
+                            "link": ""
+                        },
+                        {
+                            "name": "OH GIRL",
+                            "artist": "DPR LIVE",
+                            "link": ""
+                        },
+                        {
+                            "name": "KISS ME",
+                            "artist": "DPR LIVE",
+                            "link": ""
+                        },
+                        {
+                            "name": "NEON",
+                            "artist": "DPR LIVE",
+                            "link": ""
+                        },
+                        {
+                            "name": "LEGACY",
+                            "artist": "DPR LIVE",
+                            "link": ""
+                        },
+                        {
+                            "name": "NO RESCUE NEEDED",
+                            "artist": "DPR LIVE",
+                            "link": ""
+                        }
+                    ]
+                },
+                {
+                    "title": "IITE COOL",
+                    "albumArt": "https://i.namu.wiki/i/etoLvp3TMsQFb5KRb2aAl-NDgNDQAYVdPaG1r30N_fsAtlG6ThrG_dlgIxb-8MTLQGo0G6GIMVpM6Nhk5U66Jnzn_As6hDNWl3A6dsHT2pFsOy4FhsCatOzYmFsD-E7pGg11KhFcveyjDVIkHiihaQ.webp",
+                    "introlink": "",
+                    "introtext": "",
+                    "release": "2021.07.23",
+                    "genre": "RAP/HIPHAP",
+                    "description": "",
+                    "linkkeyword": "",
+                    "trackList": [
+                        {
+                            "name": "Venus",
+                            "artist": "DPR LIVE",
+                            "link": "https://www.youtube.com/embed/_tJM74eZy04?si=gBq6lpsjceZkTxyS&amp;controls=0"
+                        },
+                        {
+                            "name": "Hula Hoops (Feat. Beenzino, 화사)",
+                            "artist": "DPR LIVE",
+                            "link": ""
+                        },
+                        {
+                            "name": "Summer Tights",
+                            "artist": "DPR LIVE",
+                            "link": ""
+                        },
+                        {
+                            "name": "BOOM (Feat. DPR IAN)",
+                            "artist": "DPR LIVE",
+                            "link": ""
+                        },
+                        {
+                            "name": "Yellow Cab",
+                            "artist": "DPR LIVE",
+                            "link": ""
+                        },
+                        {
+                            "name": "Awesome!",
+                            "artist": "DPR LIVE",
                             "link": ""
                         }
                     ]

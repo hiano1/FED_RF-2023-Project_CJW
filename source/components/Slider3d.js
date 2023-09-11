@@ -5,24 +5,23 @@ import Artist from "../core/API.js";
 
 export default class Slider3D extends Component {
     template() {
-        //artist list , album list , track list
-        //ari, been, dpr, bruno, newj,
         const apiData = new Artist();
         const artistList = apiData.getArtistList();
-        const list = [1, 2, 3, 4, 5];
-        const listMap = list
+        console.log(artistList[0].albums);
+
+        const listMap = artistList
             .map(
                 (item, index) => `
                 <div class="carousel_cell ${index == 0 ? "active" : ""}">
-                    <div class="album_list">${item}</div>
+                    <div class="album_list"></div>
                     <div class="artist_img"></div>
+                    <div class="artist_name">${item.name}</div>
                 </div>
                 `,
             )
             .join("");
 
-        const listCircle = [1, 2, 3, 4, 5, 6];
-        const CircleMap = listCircle
+        const albumList = artistList[0].albums
             .map(
                 (item, index) => `
                 <div class="circle_item ${
@@ -30,11 +29,11 @@ export default class Slider3D extends Component {
                         ? "active"
                         : index == 1
                         ? "next"
-                        : index == listCircle.length - 1
+                        : index == artistList[0].albums.length - 1
                         ? "prev"
                         : ""
                 }">
-                    <img src="./source/resource/art01.jpg"/>
+                    <img src="${item.albumArt}"/>
                     <div class="circle_prev">
                         <svg xmlns="http://www.w3.org/2000/svg" height="80" viewBox="0 -960 960 960" width="80" fill="#F9F8F6"><path d="m296-345-56-56 240-240 240 240-56 56-184-184-184 184Z"/></svg>
                     </div>
@@ -45,12 +44,11 @@ export default class Slider3D extends Component {
                 `,
             )
             .join("");
-        const listCircleInfo = [1, 2, 3, 4, 5, 6];
-        const CircleInfoMap = listCircleInfo
+        const albumInfoList = artistList[0].albums
             .map(
                 (item, index) => `
                 <div class="circle_info_item ${index == 0 ? "active" : ""}">
-                    <p class="circle_info_title">Desc ${item}</p>
+                    <p class="circle_info_title">${item.title}</p>
                 </div>
                     `,
             )
@@ -59,10 +57,10 @@ export default class Slider3D extends Component {
         return `
             <div class="circle_slider">
                 <div class="circle_warper">
-                    ${CircleMap}
+                    ${albumList}
                 </div>
                 <div class="circle_info">
-                    ${CircleInfoMap}
+                    ${albumInfoList}
                 </div>
             </div>
         <div class="scene">
@@ -96,20 +94,38 @@ export default class Slider3D extends Component {
         let carousel = document.querySelector(".carousel");
 
         ///////////////////CIRCLE PART////////////////////////////
+        const apiData = new Artist();
+        const artistList = apiData.getArtistList();
 
-        let circle_slider = document.querySelector(".circle_slider");
-        let circle_warper = document.querySelector(".circle_warper");
-        let circle_items = document.querySelectorAll(".circle_item");
-        let circle_info_item = document.querySelectorAll(".circle_info_item");
+        let circle_slider,
+            circle_warper,
+            circle_items,
+            circle_info,
+            circle_info_item,
+            currentAngle,
+            currentSlide,
+            nextSlide,
+            previousSlide,
+            stepAngle = 60;
 
-        let stepAngle = 60,
-            currentAngle = 0,
-            currentSlide = 0,
-            nextSlide = 1,
-            previousSlide = circle_items.length - 1;
+        let rotatePositionList = [];
+
         /////////////3D SLIDER//////////////
         function setCells() {
             cellWidth = carousel.offsetWidth;
+        }
+
+        function setCircleSlider() {
+            circle_slider = document.querySelector(".circle_slider");
+            circle_warper = document.querySelector(".circle_warper");
+            circle_items = document.querySelectorAll(".circle_item");
+            circle_info = document.querySelector(".circle_info");
+            circle_info_item = document.querySelectorAll(".circle_info_item");
+
+            currentAngle = 0;
+            currentSlide = 0;
+            nextSlide = 1;
+            previousSlide = circle_items.length - 1;
         }
 
         function rotateCarousel(index) {
@@ -148,11 +164,11 @@ export default class Slider3D extends Component {
 
         this.addEvent("click", ".carousel_prev", () => {
             rotateCarousel(-1);
-            rotateAlreadyTransform(circle_slider);
+            setAlbumList(selectedIndex);
         });
         this.addEvent("click", ".carousel_next", () => {
             rotateCarousel(1);
-            rotateAlreadyTransform(circle_slider);
+            setAlbumList(selectedIndex);
         });
         this.addEvent("click", ".goMain", () => {
             new App(document.querySelector("#app"));
@@ -166,21 +182,28 @@ export default class Slider3D extends Component {
         function setCircleSize() {
             //circle item direction setting
             //60도 세팅후 3개만 가져오기
+            //자리는 6개 warp 은 계속 돈다 60씩 시작값은 -90
 
             let radius = window.innerHeight;
             let itemsAngle = (2 * Math.PI) / 6;
 
             circle_slider.style.transform = `translateX(-${radius * 0.6}px)`;
 
-            for (let i = 0; i < circle_items.length; i++) {
+            for (let i = 0; i < 6; i++) {
                 let x = (radius / 2) * Math.cos(itemsAngle * i - Math.PI / 2),
                     y = (radius / 2) * Math.sin(itemsAngle * i - Math.PI / 2);
-                circle_items[
-                    i
-                ].style.transform = `translate(${x}px,${y}px) rotate(${
+                // circle_items[
+                //     i
+                // ].style.transform = `translate(${x}px,${y}px) rotate(${
+                //     ((itemsAngle * 180) / Math.PI) * i - 90
+                // }deg)`;
+                rotatePositionList[i] = `translate(${x}px,${y}px) rotate(${
                     ((itemsAngle * 180) / Math.PI) * i - 90
                 }deg)`;
+
+                // ${((itemsAngle * 180) / Math.PI) * i - 90}deg
             }
+            slideRotate(0);
         }
 
         function slideRotate(index) {
@@ -195,6 +218,13 @@ export default class Slider3D extends Component {
 
             currentAngle += stepAngle * -index;
             circle_warper.style.transform = `rotate(${currentAngle}deg)`;
+
+            circle_items[currentSlide].style.transform =
+                rotatePositionList[0 - currentAngle / 60];
+            circle_items[nextSlide].style.transform =
+                rotatePositionList[1 - currentAngle / 60];
+            circle_items[previousSlide].style.transform =
+                rotatePositionList[5 - currentAngle / 60];
 
             circle_items[currentSlide].classList.add("active");
             circle_items[nextSlide].classList.add("next");
@@ -225,21 +255,66 @@ export default class Slider3D extends Component {
             // this.$target.style.animation = "rotate 3s infinite";
         });
 
-        function rotateAlreadyTransform(object) {
+        function setAlbumList(index) {
+            let albumList = artistList[index].albums
+                .map(
+                    (item, index) => `
+                <div class="circle_item ${
+                    index == 0
+                        ? "active"
+                        : index == 1
+                        ? "next"
+                        : index == artistList[0].albums.length - 1
+                        ? "prev"
+                        : ""
+                }">
+                    <img src="${item.albumArt}"/>
+                    <div class="circle_prev">
+                        <svg xmlns="http://www.w3.org/2000/svg" height="80" viewBox="0 -960 960 960" width="80" fill="#F9F8F6"><path d="m296-345-56-56 240-240 240 240-56 56-184-184-184 184Z"/></svg>
+                    </div>
+                    <div class="circle_next">
+                        <svg xmlns="http://www.w3.org/2000/svg" height="80" viewBox="0 -960 960 960" width="80" fill="#F9F8F6"><path d="M480-345 240-585l56-56 184 184 184-184 56 56-240 240Z"/></svg>
+                    </div>
+                </div>
+                `,
+                )
+                .join("");
+
+            let albumInfoList = artistList[index].albums
+                .map(
+                    (item, index) => `
+                <div class="circle_info_item ${index == 0 ? "active" : ""}">
+                    <p class="circle_info_title">${item.title}</p>
+                </div>
+                    `,
+                )
+                .join("");
+
             // getComputedStyle(object).getPropertyValue("transform");
-            let transform = object.style.transform;
+            let transform = circle_slider.style.transform;
             if (transform != null) {
-                object.style.transition = "all 1s";
-                object.style.transform = `${transform} rotateY(360deg)`;
+                circle_warper.style.transform = "";
+                circle_slider.style.transition = "all 1s";
+                circle_slider.style.transform = `${transform} rotateY(360deg)`;
+                circle_items.forEach((el) => {
+                    el.style.opacity = 0;
+                });
+                circle_info.style.opacity = 0;
                 setTimeout(() => {
-                    object.style.transition = "";
-                    object.style.transform = `${transform}`;
+                    circle_slider.style.transition = "";
+                    circle_slider.style.transform = `${transform}`;
+                    circle_info.style.opacity = 1;
+                    circle_warper.innerHTML = albumList;
+                    circle_info.innerHTML = albumInfoList;
+                    setCircleSlider();
+                    setCircleSize();
                 }, 1000);
             }
         }
 
         //default setting
         setCarousel();
+        setCircleSlider();
         setCircleSize();
 
         window.onresize = () => {

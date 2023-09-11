@@ -56,6 +56,13 @@
     filter: grayscale();
     z-index: 0;
 }
+.artist_name {
+    position: absolute;
+    color: white;
+    font-size: 8vh;
+    bottom: 8vh;
+    left: 50%;
+}
 .carousel_control {
     display: flex;
     flex-wrap: wrap;

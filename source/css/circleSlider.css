@@ -28,7 +28,7 @@
     position: absolute;
     transform-origin: center;
     background-color: #222;
-    transition: 0.3s linear all;
+    transition: 0.5s linear all;
     opacity: 0;
 }
 .circle_item img {
@@ -36,14 +36,13 @@
     height: 100%;
     border-radius: 50%;
 }
-.circle_item img :hover {
-    animation: rotate 3s infinite;
-}
+
 .circle_warper > .next,
 .circle_warper > .prev,
 .circle_warper > .active {
     opacity: 1;
     filter: brightness(60%);
+    transition: 1s ease-out opacity;
 }
 
 .circle_warper > .active {
@@ -69,10 +68,10 @@
 .circle_info {
     position: absolute;
     top: 42vh;
-    right: 12vw;
-    width: 12vw;
+    right: 16vh;
+    width: 20vh;
     height: 16vh;
-    border: 1px solid red;
+    transition: 1s;
 }
 .circle_info_item {
     width: 100%;
@@ -82,15 +81,20 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    transition: opacity 0s 0s linear;
+    transition: opacity 1s 0.5s ease-in;
 }
 .circle_info > .active {
     height: 100%;
     opacity: 1;
-    transition: opacity 1s 0s linear;
     /* transform: translateX(1000px); */
 }
-
+.circle_info > .active p {
+    background-color: #28384b6b;
+    border-radius: 10px;
+    padding: 1vh;
+    font-size: 3vh;
+    font-weight: bold;
+}
 .circle_info_item .circle_info_title {
     text-overflow: ellipsis;
     overflow: hidden;
