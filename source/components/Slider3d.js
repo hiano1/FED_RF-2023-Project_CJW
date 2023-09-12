@@ -1,5 +1,4 @@
 import Component from "../core/Component.js";
-import App from "../App.js";
 import MusicPlayer from "./MusicPlayer.js";
 import Artist from "../core/API.js";
 
@@ -7,14 +6,13 @@ export default class Slider3D extends Component {
     template() {
         const apiData = new Artist();
         const artistList = apiData.getArtistList();
-        console.log(artistList[0].albums);
 
         const listMap = artistList
             .map(
                 (item, index) => `
                 <div class="carousel_cell ${index == 0 ? "active" : ""}">
                     <div class="album_list"></div>
-                    <div class="artist_img"></div>
+                    <div class="artist_img"><img src="${item.image}"></div>
                     <div class="artist_name">${item.name}</div>
                 </div>
                 `,
@@ -101,16 +99,16 @@ export default class Slider3D extends Component {
             circle_warper,
             circle_items,
             circle_info,
-            circle_info_item,
+            circle_info_items,
             currentAngle,
             currentSlide,
             nextSlide,
             previousSlide,
+            detailFlag = false,
             stepAngle = 60;
 
         let rotatePositionList = [];
 
-        /////////////3D SLIDER//////////////
         function setCells() {
             cellWidth = carousel.offsetWidth;
         }
@@ -120,13 +118,15 @@ export default class Slider3D extends Component {
             circle_warper = document.querySelector(".circle_warper");
             circle_items = document.querySelectorAll(".circle_item");
             circle_info = document.querySelector(".circle_info");
-            circle_info_item = document.querySelectorAll(".circle_info_item");
+            circle_info_items = document.querySelectorAll(".circle_info_item");
 
             currentAngle = 0;
             currentSlide = 0;
             nextSlide = 1;
             previousSlide = circle_items.length - 1;
         }
+
+        /////////////3D SLIDER//////////////
 
         function rotateCarousel(index) {
             let l = cells.length - 1;
@@ -171,9 +171,6 @@ export default class Slider3D extends Component {
             rotateCarousel(1);
             setAlbumList(currSlide);
         });
-        this.addEvent("click", ".goMain", () => {
-            new App(document.querySelector("#app"));
-        });
         this.addEvent("click", ".goMain2", () => {
             new MusicPlayer(document.querySelector("#fixed"), cellWidth);
         });
@@ -181,10 +178,6 @@ export default class Slider3D extends Component {
         ///////////////////CIRCLE PART////////////////////////////
 
         function setCircleSize() {
-            //circle item direction setting
-            //60도 세팅후 3개만 가져오기
-            //자리는 6개 warp 은 계속 돈다 60씩 시작값은 -90
-
             let radius = window.innerHeight;
             let itemsAngle = (2 * Math.PI) / 6;
 
@@ -193,16 +186,10 @@ export default class Slider3D extends Component {
             for (let i = 0; i < 6; i++) {
                 let x = (radius / 2) * Math.cos(itemsAngle * i - Math.PI / 2),
                     y = (radius / 2) * Math.sin(itemsAngle * i - Math.PI / 2);
-                // circle_items[
-                //     i
-                // ].style.transform = `translate(${x}px,${y}px) rotate(${
-                //     ((itemsAngle * 180) / Math.PI) * i - 90
-                // }deg)`;
+
                 rotatePositionList[i] = `translate(${x}px,${y}px) rotate(${
                     ((itemsAngle * 180) / Math.PI) * i - 90
                 }deg)`;
-
-                // ${((itemsAngle * 180) / Math.PI) * i - 90}deg
             }
             slideRotate(0);
         }
@@ -211,7 +198,11 @@ export default class Slider3D extends Component {
             circle_items[currentSlide].classList.remove("active");
             circle_items[nextSlide].classList.remove("next");
             circle_items[previousSlide].classList.remove("prev");
-            circle_info_item[currentSlide].classList.remove("active");
+            circle_info_items[currentSlide].classList.remove("active");
+            circle_items[currentSlide].removeEventListener(
+                "mouseover",
+                mouseEventActiveCircle,
+            );
 
             currentSlide = lengthCheck(currentSlide, index);
             nextSlide = lengthCheck(nextSlide, index);
@@ -220,18 +211,21 @@ export default class Slider3D extends Component {
             currentAngle += stepAngle * -index;
             circle_warper.style.transform = `rotate(${currentAngle}deg)`;
 
-            let cai = currentAngle / 60;
             circle_items[currentSlide].style.transform =
-                rotatePositionList[(0 - cai) % 6];
+                rotatePositionList[positionCheck(0, currentAngle)];
             circle_items[nextSlide].style.transform =
-                rotatePositionList[(1 - cai) % 6];
+                rotatePositionList[positionCheck(1, currentAngle)];
             circle_items[previousSlide].style.transform =
-                rotatePositionList[(5 - cai) % 6];
+                rotatePositionList[positionCheck(5, currentAngle)];
 
             circle_items[currentSlide].classList.add("active");
             circle_items[nextSlide].classList.add("next");
             circle_items[previousSlide].classList.add("prev");
-            circle_info_item[currentSlide].classList.add("active");
+            circle_info_items[currentSlide].classList.add("active");
+            circle_items[currentSlide].addEventListener(
+                "mouseover",
+                mouseEventActiveCircle,
+            );
         }
 
         function lengthCheck(slideIndex, index) {
@@ -247,7 +241,7 @@ export default class Slider3D extends Component {
 
         function positionCheck(index, angle) {
             let result = (index - angle / 60) % 6;
-            let a = Math.sign(result);
+            return Math.sign(result) == -1 ? result + 6 : result;
         }
 
         this.addEvent("click", ".circle_prev", () => {
@@ -255,11 +249,6 @@ export default class Slider3D extends Component {
         });
         this.addEvent("click", ".circle_next", () => {
             slideRotate(1);
-        });
-        this.addEvent("mouseover", ".circle_item img", (e) => {
-            // console.log(this.$target);
-            // console.log("a");
-            // this.$target.style.animation = "rotate 3s infinite";
         });
 
         function setAlbumList(index) {
@@ -291,13 +280,12 @@ export default class Slider3D extends Component {
                 .map(
                     (item, index) => `
                 <div class="circle_info_item ${index == 0 ? "active" : ""}">
-                    <p class="circle_info_title">${item.title}</p>
+                    <div class="circle_info_title">${item.title}</div>
                 </div>
                     `,
                 )
                 .join("");
 
-            // getComputedStyle(object).getPropertyValue("transform");
             let transform = circle_slider.style.transform;
             if (transform != null) {
                 circle_warper.style.transform = "";
@@ -318,6 +306,41 @@ export default class Slider3D extends Component {
                 }, 1000);
             }
         }
+        //hover 했을떄 제목만 튀어나오게?
+        function mouseEventActiveCircle(e) {
+            if (e.type == "mouseover") {
+                let width =
+                    circle_items[currentSlide].getBoundingClientRect().width;
+                circle_info.style.right = `-${width + 20}px`;
+                circle_info.style.zIndex = 0;
+            } else if (e.type == "mouseout") {
+                circle_info.style.right = `-10vh`;
+                circle_info.style.zIndex = -1;
+            }
+        }
+
+        function showCircleInfo() {
+            if (!detailFlag) {
+                detailFlag = true;
+
+                let album_detail = `
+                    <div class="circle_info_title">
+
+                    </div>
+                `;
+
+                circle_items[currentSlide].style;
+                circle_info_items[currentSlide].innerHTML = album_detail;
+            }
+            //info 배경과 함께 띄우기
+            //페이지이동 버튼에 props binding
+        }
+        //show info 떠있을때 창 바깥 누르면 info 꺼지게 & X버튼
+
+        this.addEvent("click", ".circle_item", () => {
+            showCircleInfo();
+            // new App(document.querySelector("#app"));
+        });
 
         //default setting
         setCarousel();

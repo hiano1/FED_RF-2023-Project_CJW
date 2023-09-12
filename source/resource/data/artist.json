@@ -2,7 +2,7 @@
     "artists": [
         {
             "name": "Ariana Grande",
-            "image": "",
+            "image": "source/resource/img/ariana.jpg",
             "albums": [
                 {
                     "title": "Yours Truly",
@@ -500,7 +500,7 @@
         },
         {
             "name": "Bruno Mars",
-            "image": "",
+            "image": "source/resource/img/bruno.jpg",
             "albums": [
                 {
                     "title": "Doo-Wops & Hooligans",
@@ -696,8 +696,8 @@
             ]
         },
         {
-            "name": "백예린",
-            "image": "",
+            "name": "Yerin Baek",
+            "image": "source/resource/img/yerin.webp",
             "albums": [
                 {
                     "title": "Every letter I sent you.",
@@ -1045,7 +1045,7 @@
         },
         {
             "name": "Beenzino",
-            "image": "",
+            "image": "source/resource/img/beenzino.jpg",
             "albums": [
                 {
                     "title": "24:26",
@@ -1309,7 +1309,7 @@
         },
         {
             "name": "NewJeans",
-            "image": "",
+            "image": "source/resource/img/NewJeans2.jpg",
             "albums": [
                 {
                     "title": "New Jeans",
@@ -1411,7 +1411,7 @@
         },
         {
             "name": "DPR LIVE",
-            "image": "",
+            "image": "source/resource/img/dpr.jpg",
             "albums": [
                 {
                     "title": "Coming To You Live",

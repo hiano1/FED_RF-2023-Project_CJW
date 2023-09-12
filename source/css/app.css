@@ -98,3 +98,14 @@ acronym {
 .container3d {
     display: grid;
 }
+
+@font-face {
+    font-family: "DMSerifDisplay";
+    src: url("../resource/font/DMSerifDisplay-Regular.ttf") format("truetype");
+    font-weight: normal;
+}
+@font-face {
+    font-family: "DMSerifDisplay-Italic";
+    src: url("../resource/font/DMSerifDisplay-Italic.ttf") format("truetype");
+    font-weight: normal;
+}
