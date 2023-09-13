@@ -1,6 +1,5 @@
 import Component from "./core/Component.js";
 import VideoCardsList from "./components/VideoCardsList.js";
-import PlayList from "./components/PlayList.js";
 import Header from "./components/Header.js";
 import Footer from "./components/Footer.js";
 
@@ -33,9 +32,6 @@ export default class App extends Component {
         };
     }
 
-    //todo : 헤더 메뉴 , footer , main 하단부
-    // 리스트 위에 글자추가 https://twogood.com.au/ font "Futura Now Headline"
-    //https://colabs.com.au/
     template() {
         return `
       <header></header>
@@ -46,8 +42,7 @@ export default class App extends Component {
       <footer></footer>
     `;
     }
-    // <section id="PlayList"></section>
-    // mounted
+
     mounted() {
         const { VideoCards, PrevSlide, NextSlide } = this;
         const $Header = this.$target.querySelector("header");
@@ -63,7 +58,6 @@ export default class App extends Component {
             PrevSlide: PrevSlide.bind(this),
             NextSlide: NextSlide.bind(this),
         });
-        // new PlayList($PlayList, {});
         new Footer($Footer, {});
     }
 

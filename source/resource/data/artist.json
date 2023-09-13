@@ -2,11 +2,11 @@
     "artists": [
         {
             "name": "Ariana Grande",
-            "image": "source/resource/img/ariana.jpg",
+            "image": "source/resource/img/artists/ariana.jpg",
             "albums": [
                 {
                     "title": "Yours Truly",
-                    "albumArt": "https://i.namu.wiki/i/s-tUXL2eXik6jxjDY51TlbISoM-bjsn6C5pXYBoqg9GhngZR_EDOHbnX0npHCHgzVOtncVy0nB6_uHfzmswtErem23Mez5-bJus1Mx9xBeBsT_DshLnJWKofoVlOSujEsDwW9Yi0E8l5CH5FRDpOjw.webp",
+                    "albumArt": "source/resource/img/albumarts/ari1.webp",
                     "introlink": "",
                     "introtext": "",
                     "release": "2013.01.01",
@@ -78,7 +78,7 @@
                 },
                 {
                     "title": "My Everything",
-                    "albumArt": "https://i.namu.wiki/i/WqfR1t90YsCDtiVDV3lsqdrHhKij1HW1qAfUDnaf5_Rdk7A_yT4ZGBqMRETKAb80wPrjwnLjU0U9RbaeHF3RW9onbIRlTdy0YuFWXSgMt_yAw1sxfdC7RrNNe2vAVTueZ-NsX6a3_P2Qrfasi8KwPA.webp",
+                    "albumArt": "source/resource/img/albumarts/ari2.webp",
                     "introlink": "",
                     "introtext": "",
                     "release": "2014.08.25",
@@ -165,7 +165,7 @@
                 },
                 {
                     "title": "Dangerous Woman",
-                    "albumArt": "https://i.namu.wiki/i/sPstYjNrvPVdRzkESb9WMfuTksNmG8QZR8rDvUWds_NJieRvhfEbI5kxkUQc60kcKpcLSf_49rmaHeAX_hreTHTAQBwUWf8BlOoF8QWcQAon0CK-zGMO7IUOfxwqxNvraL9ZdE6HgvUy4VsnlYbYyQ.webp",
+                    "albumArt": "source/resource/img/albumarts/ari3.webp",
                     "introlink": "",
                     "introtext": "",
                     "release": "2016.05.20",
@@ -257,7 +257,7 @@
                 },
                 {
                     "title": "Sweetener",
-                    "albumArt": "https://i.namu.wiki/i/ZTsVyWO4fZ_lgCCTYd7y3yXIUU93fwi_JejQnQsghXo976zjR-wQe-LvUsI6cQo4F-Vfm0MARkYHyDwzNTVuTTLvFnu8PRGA9bsYZwLDe2pwbVRfdz-Duv6eUOlQJGw-imL7lFD9w9BJdGk7mVGwuQ.webp",
+                    "albumArt": "source/resource/img/albumarts/ari4.webp",
                     "introlink": "",
                     "introtext": "",
                     "release": "2018.08.17",
@@ -344,7 +344,7 @@
                 },
                 {
                     "title": "thank u, next",
-                    "albumArt": "https://i.namu.wiki/i/mp4o4opRyhG3AdI5CZ8YYTi4DhY0zBBntEtYU1SKqHkJSCLUyoOtwoXB0KNEw9JKRx_OGBVpCSCDRuKJz-i-XlWr6VQURJmUII17e3xTx3wvqmFWG_0d5mnMnCDPRGi4gns2BOAjF6y-BCA7PT3SnQ.webp",
+                    "albumArt": "source/resource/img/albumarts/ari5.webp",
                     "introlink": "",
                     "introtext": "",
                     "release": "2019.02.08",
@@ -416,7 +416,7 @@
                 },
                 {
                     "title": "Positions",
-                    "albumArt": "https://i.namu.wiki/i/Nu8cP0b7c1bOryY5i-uLzBcRtnv6lOQgNTr4Tz6HOZ3fekR6Rc_pQPv4SYWJ4m_88nZXADJQ3CymtTP98odjAQY7Pwy7Vofti7a-kfr_a4BFQYfslRC_Cq5k_jYoM89oI0GFtEQHUU4BqwN8uXqlZA.webp",
+                    "albumArt": "source/resource/img/albumarts/ari6.webp",
                     "introlink": "",
                     "introtext": "",
                     "release": "2020.10.30",
@@ -500,11 +500,11 @@
         },
         {
             "name": "Bruno Mars",
-            "image": "source/resource/img/bruno.jpg",
+            "image": "source/resource/img/artists/bruno.jpg",
             "albums": [
                 {
                     "title": "Doo-Wops & Hooligans",
-                    "albumArt": "https://i.namu.wiki/i/FAlypM7h3rI_QMQSBU2BSxuWhhutorjDW4mLi1b1QrJcjdNvMfcz7RYHtOr4JaulslkwI8K3TfKhEUyo3esblrH-APOeZ3K_ZjPbSX9O4uPlWKbu_DXBl4wPjHIVZHbk2B3fg2db6natPXb0QmDtAQ.webp",
+                    "albumArt": "source/resource/img/albumarts/bruno1.webp",
                     "introlink": "",
                     "introtext": "",
                     "release": "2010.10.04",
@@ -576,7 +576,7 @@
                 },
                 {
                     "title": "Unorthodox Jukebox",
-                    "albumArt": "https://i.namu.wiki/i/jsfjvtG9SzWvQHGd2E-WthtRL01EPApHNQxczucLeZMoeARwo88nW7W2tipp77oB7txwEyLjwwCZlZZJ3Uxzce6ILbR__KNca0YNXfe71ItRm9jkSpk8uCj6Rj0bThDg9ekKO9Xd87qWy0tiyNkANw.webp",
+                    "albumArt": "source/resource/img/albumarts/bruno2.webp",
                     "introlink": "",
                     "introtext": "",
                     "release": "2012.12.17",
@@ -638,7 +638,7 @@
                 },
                 {
                     "title": "24K Magic",
-                    "albumArt": "https://i.namu.wiki/i/gYjhRIpRToXUSgl6_oHPy_AlU7931FX63ygTfWNhXanwA4fflxz0Y84xumxx9yl4OWpjjoIXH6BkyNC4cH1gDqXLYBRKtWVkOwjB13cRvD3-P7x_84BmKb4RhaWyRz2laxvr9Y8DwfpIKHAP0Sxc-w.webp",
+                    "albumArt": "source/resource/img/albumarts/bruno3.webp",
                     "introlink": "",
                     "introtext": "",
                     "release": "2016.11.18",
@@ -697,11 +697,11 @@
         },
         {
             "name": "Yerin Baek",
-            "image": "source/resource/img/yerin.webp",
+            "image": "source/resource/img/artists/yerin.webp",
             "albums": [
                 {
                     "title": "Every letter I sent you.",
-                    "albumArt": "https://i.namu.wiki/i/CcjnTpElldj0h2EJX9yjbo13HVg3sbUjY-U5kH_QIXoq94bhUx3sy9ujrz9svkA5GzjivDJeASqMexVZwJ_fopOJYQHU75AObqc-en7h78l7IzEke_vOy_ow6Pg4Cci8bY4JHFH8GIyVtGEVnzZ-jQ.webp",
+                    "albumArt": "source/resource/img/albumarts/byr1.webp",
                     "introlink": "",
                     "introtext": "",
                     "release": "2019.12.10",
@@ -803,7 +803,7 @@
                 },
                 {
                     "title": "tellusboutyourself",
-                    "albumArt": "https://i.namu.wiki/i/TKbGNLhS-QVpmcdcu183Z_IILreDIT41jS4hh2L1Aa03T53QTOpboX51q2ad0sKbGoiCIfv3mNKn1A9q6hwzHii8RU53OAZF0QdzRJXAac0KhxL2G9HzyaQTOnSmNivrwz9lJ6SsCMS5Cd-UUfFDXg.webp",
+                    "albumArt": "source/resource/img/albumarts/byr2.webp",
                     "introlink": "",
                     "introtext": "",
                     "release": "2020.12.10",
@@ -885,7 +885,7 @@
                 },
                 {
                     "title": "FRANK",
-                    "albumArt": "https://i.namu.wiki/i/bJb-B0RZMUowWz3HhZMYWI8WSZwF-X0skjVN9ENogsfdXWaei5PoUF3Q8z1xykGPog_HIeKftopZr2nUnH3__DwTvkhqSJvW89BX2J7znQFL4MS6DOBtOI-nLVlHRi0F9l1e9XKmku2GkHeSmINmYg.webp",
+                    "albumArt": "source/resource/img/albumarts/byr3.webp",
                     "introlink": "",
                     "introtext": "",
                     "release": "2015.11.30",
@@ -927,7 +927,7 @@
                 },
                 {
                     "title": "Our love is great",
-                    "albumArt": "https://i.namu.wiki/i/BufhZv2yCOkKCdEIpR5L4Xk4KsFVNjINNtxpsqRC03VAKw4zmxpP6fgwi3lpytCGZFBtyVp1kwfU09qbcSBvcHg5TdZoCggCrxlKl5ht926LYNm8HlfISrlciI_p16JJpr1F8ZoBeh7Hqe03Sf5yew.webp",
+                    "albumArt": "source/resource/img/albumarts/byr4.webp",
                     "introlink": "",
                     "introtext": "",
                     "release": "2015.11.30",
@@ -974,7 +974,7 @@
                 },
                 {
                     "title": "선물 (Love, Yerin)",
-                    "albumArt": "https://i.namu.wiki/i/T94qNyh9XVhvRmZZliYgjMjoR9Sy4q4R2wFs0i0U9JRTXSwdyRQXIhqB6QnEsMJNa-GoIDKVa_rZTgGBhU1psH8rLjrNmrMFcIBlvRXWDVI70Dx8e4hpJtn-zb2WHP_9ZIGjdyK6_HpbYELI4g5BCA.webp",
+                    "albumArt": "source/resource/img/albumarts/byr5.webp",
                     "introlink": "",
                     "introtext": "",
                     "release": "2021.09.10",
@@ -1016,7 +1016,7 @@
                 },
                 {
                     "title": "물고기(Pisces)",
-                    "albumArt": "https://i.namu.wiki/i/YXX7ApUvQ_pXeIslPzLawGvPUpK24hezXrReCUIZN-d5q3ga0ceZv8tUIf5eJTCt6PlnDQah7Mpgn7sgOE31y8hqWJj63jXcSnnLjmqH4glRxtfYFOCTAWjzLRNQjm6hlTNV6iY5v6Nph1GUTQRbcQ.webp",
+                    "albumArt": "source/resource/img/albumarts/byr6.webp",
                     "introlink": "",
                     "introtext": "",
                     "release": "2022.07.15",
@@ -1045,11 +1045,11 @@
         },
         {
             "name": "Beenzino",
-            "image": "source/resource/img/beenzino.jpg",
+            "image": "source/resource/img/artists/beenzino.jpg",
             "albums": [
                 {
                     "title": "24:26",
-                    "albumArt": "https://i.namu.wiki/i/6pZtN1fXTNIyOJmwjSJYpVS6KI_TK70s4I-vivc7lpsD2ezVBoAgFoLCdFOurkKHLIjgt---BGEJz6xPaVur3zx7p7sFhno1XzPFGcaI6GMq15PhuLcmGc4-9tqbzHY0W2_SZOONWgkEQe9EFTItIQ.webp",
+                    "albumArt": "source/resource/img/albumarts/zino1.webp",
                     "introlink": "",
                     "introtext": "",
                     "release": "2012.07.03",
@@ -1101,7 +1101,7 @@
                 },
                 {
                     "title": "Up All Night",
-                    "albumArt": "https://i.namu.wiki/i/un85QuQUIqw7gGwx51rkZZ81Fv-Xcjh_7KXXVnCoptU5z3PWLj_WaPdi7rdUhxbhGOhjd7eyXSrH3feSUAkzbtQtkkFbJ09mhLiqKPE2z4c49y4_4crkmAyRTRnRDi-8WVjuObMCTqKGCgUphUFifw.webp",
+                    "albumArt": "source/resource/img/albumarts/zino2.webp",
                     "introlink": "",
                     "introtext": "",
                     "release": "2014.07.16",
@@ -1138,7 +1138,7 @@
                 },
                 {
                     "title": "12",
-                    "albumArt": "https://i.namu.wiki/i/TG32_YW05NK8-3TkcfkJ0UmCq_h2lbaVs829ihgNJvLNCeCg12sVMEIKIJqOce6e_8EJW-Bv13HkEpch6bxAbRqIdITZXbGRx7kINxcncuqgjKf1B-N4UVNGD9E2Ml7P-Q1ogxNytBab4d2XYXxFcQ.webp",
+                    "albumArt": "source/resource/img/albumarts/zino3.webp",
                     "introlink": "",
                     "introtext": "",
                     "release": "2016.05.31",
@@ -1205,7 +1205,7 @@
                 },
                 {
                     "title": "NOWITZKI",
-                    "albumArt": "https://i.namu.wiki/i/7_AZ3z5uqKYfaG3SOTA2hsq-lNsx7TAfNa7Ni8-gO059LqZbn649LxAURUiigP443fhqSNrHp0YpqaN5FpLXZkKahAavYQyVwsLZnQd8rUDcjle5Ka--yd9uwrrMgoRRbmLqEe-eza5R-EefSBsfJA.webp",
+                    "albumArt": "source/resource/img/albumarts/zino4.webp",
                     "introlink": "",
                     "introtext": "",
                     "release": "2023.07.03",
@@ -1309,11 +1309,11 @@
         },
         {
             "name": "NewJeans",
-            "image": "source/resource/img/NewJeans2.jpg",
+            "image": "source/resource/img/artists/NewJeans2.jpg",
             "albums": [
                 {
                     "title": "New Jeans",
-                    "albumArt": "https://i.namu.wiki/i/yOaTM5SJr1TMXSnc-o6UksrLN7bUXXQ8mDpIvKPEAFgeIG3ngEzxju7CXrGbFj_nUzdGe1tieZBV7TgDHv5YDRk4nM7ziNDt5N2C_ML9k3hhUNyzgzlUhn9lDOQNWVPJJWx89baB_BwjJabMxt73Hw.svg",
+                    "albumArt": "source/resource/img/albumarts/nj1.svg",
                     "introlink": "",
                     "introtext": "",
                     "release": "2022.08.01",
@@ -1345,7 +1345,7 @@
                 },
                 {
                     "title": "OMG",
-                    "albumArt": "https://i.namu.wiki/i/G9Mfffn_nRFJA2_qUooAQLN0xHozpLJlav-MGgKLs47c54ssgIzJvtyc67yubCRzzp_TRhdt2oEPE87BIPJrJcBBLy4mpFi6SpjTWsqYR3456hkOCmJjw43_BHjDChHaZnSma_f4j6PO-PUcUdRhHA.jpg",
+                    "albumArt": "source/resource/img/albumarts/nj2.jpg",
                     "introlink": "",
                     "introtext": "",
                     "release": "2023.01.02",
@@ -1367,7 +1367,7 @@
                 },
                 {
                     "title": "Get Up",
-                    "albumArt": "https://i.namu.wiki/i/nDPw9pDRxdePFFEEFH2FFZoSQvvDnVMw5QT0uKYgccssHRdtCCYYiIRpf3hxH__xuWnPEbo53EIaP5i4fGBkTw03-89gVNrRs_GD3WhVZynrtnBUlmpuRQYyPb1talLafKGtIB6-Cn5Y26tX8p9nsw.webp",
+                    "albumArt": "source/resource/img/albumarts/nj3.webp",
                     "introlink": "",
                     "introtext": "",
                     "release": "2023.07.21",
@@ -1415,7 +1415,7 @@
             "albums": [
                 {
                     "title": "Coming To You Live",
-                    "albumArt": "https://i.namu.wiki/i/T_3v_nE1x748DL_X7YyFW7TFm8LZpLAXRGBBk-dE9ERelhbgQr7pk5QkyjLwx74a-COAqJAfqmF277tEzn-11a91ymG9Ik3gRMPsO7eDUDIF60NGbghMbMqulh00WIII_sU6XHN90ipDAA1Bamcmjw.webp",
+                    "albumArt": "source/resource/img/albumarts/dpr1.webp",
                     "introlink": "",
                     "introtext": "",
                     "release": "2017.03.15",
@@ -1462,7 +1462,7 @@
                 },
                 {
                     "title": "Her",
-                    "albumArt": "https://i.namu.wiki/i/pFKB8PHELPu_fDwqtE_oRPNK6fnXe6OYzKo0Kh_wveH0tkd_ShG-q4CuEUsy0zYy0FJB8Q7Tt_EfUOfyoHbEnbQMqrEXMQChf7GRirPdjxL1kvblvsDnK_MP7sCAmInp4XWHQGQWUzv5t2XjpZM5wg.webp",
+                    "albumArt": "source/resource/img/albumarts/dpr2.webp",
                     "introlink": "",
                     "introtext": "",
                     "release": "2017.12.07",
@@ -1499,7 +1499,7 @@
                 },
                 {
                     "title": "IS ANYBODY OUT THERE?",
-                    "albumArt": "https://i.namu.wiki/i/R874CTdNQMzcBVhjai2NVVJ0CIGB0QyWs311Xv0sVjIatuSLqyjFSftU6HnlaDba-5VvRUN_ydjbAHILmv1kBqFkLqdWgJOHnWmyXEs-hCUIHWEvY-4OXmat2sZJVDsTid7LNXYngl3cgpbFan6lZA.webp",
+                    "albumArt": "source/resource/img/albumarts/dpr3.webp",
                     "introlink": "",
                     "introtext": "",
                     "release": "2020.03.03",
@@ -1566,7 +1566,7 @@
                 },
                 {
                     "title": "IITE COOL",
-                    "albumArt": "https://i.namu.wiki/i/etoLvp3TMsQFb5KRb2aAl-NDgNDQAYVdPaG1r30N_fsAtlG6ThrG_dlgIxb-8MTLQGo0G6GIMVpM6Nhk5U66Jnzn_As6hDNWl3A6dsHT2pFsOy4FhsCatOzYmFsD-E7pGg11KhFcveyjDVIkHiihaQ.webp",
+                    "albumArt": "source/resource/img/albumarts/dpr4.webp",
                     "introlink": "",
                     "introtext": "",
                     "release": "2021.07.23",

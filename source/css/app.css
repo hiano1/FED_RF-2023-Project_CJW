@@ -40,13 +40,14 @@ body {
     font-family: sans-serif;
     text-align: center;
     background-color: rgb(28, 28, 28);
-    overflow: hidden;
-    -webkit-user-select: none;
+    overflow: hidden scroll;
     -moz-user-select: none;
     -ms-use-select: none;
     user-select: none;
 }
-
+body::-webkit-scrollbar {
+    display: none;
+}
 /* Extra options you might want to consider*/
 
 table {
@@ -95,7 +96,7 @@ acronym {
     border: 0;
 }
 
-.container3d {
+.main_content {
     display: grid;
 }
 
@@ -108,4 +109,13 @@ acronym {
     font-family: "DMSerifDisplay-Italic";
     src: url("../resource/font/DMSerifDisplay-Italic.ttf") format("truetype");
     font-weight: normal;
+}
+.loading {
+    width: 0vw;
+    height: 0vw;
+    background: #000000;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    position: fixed;
+    z-index: 20;
 }

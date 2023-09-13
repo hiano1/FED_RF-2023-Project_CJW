@@ -5,6 +5,7 @@ export default class Artist {
     constructor() {
         this.getArtistList();
         this.getAlbumList();
+        this.getAlbum();
     }
 
     getArtistList() {
@@ -26,7 +27,8 @@ export default class Artist {
 
         return result;
     }
-    getAlbum(title) {
-        let result = "";
+    getAlbum(artistIndex) {
+        let list = this.artistList[artistIndex];
+        return list;
     }
 }

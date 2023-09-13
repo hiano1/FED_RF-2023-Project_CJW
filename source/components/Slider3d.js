@@ -3,11 +3,13 @@ import MusicPlayer from "./MusicPlayer.js";
 import Artist from "../core/API.js";
 
 export default class Slider3D extends Component {
-    template() {
+    listMap;
+    albumList;
+    setup() {
         const apiData = new Artist();
         const artistList = apiData.getArtistList();
 
-        const listMap = artistList
+        this.listMap = artistList
             .map(
                 (item, index) => `
                 <div class="carousel_cell ${index == 0 ? "active" : ""}">
@@ -19,7 +21,7 @@ export default class Slider3D extends Component {
             )
             .join("");
 
-        const albumList = artistList[0].albums
+        this.albumList = artistList[0].albums
             .map(
                 (item, index) => `
                 <div class="circle_item ${
@@ -42,7 +44,7 @@ export default class Slider3D extends Component {
                 `,
             )
             .join("");
-        const albumInfoList = artistList[0].albums
+        this.albumInfoList = artistList[0].albums
             .map(
                 (item, index) => `
                 <div class="circle_info_item ${index == 0 ? "active" : ""}">
@@ -51,19 +53,20 @@ export default class Slider3D extends Component {
                     `,
             )
             .join("");
-
+    }
+    template() {
         return `
-            <div class="circle_slider">
-                <div class="circle_warper">
-                    ${albumList}
-                </div>
-                <div class="circle_info">
-                    ${albumInfoList}
-                </div>
+        <div class="circle_slider">
+            <div class="circle_warper">
+                ${this.albumList}
             </div>
+            <div class="circle_info">
+                ${this.albumInfoList}
+            </div>
+        </div>
         <div class="scene">
             <div class="carousel">
-                ${listMap}
+                ${this.listMap}
             </div>
         </div>
         <div class="carousel_control">
@@ -77,8 +80,8 @@ export default class Slider3D extends Component {
         </div>
     `;
     }
-
     setEvent() {
+        const { goAlbumPage } = this.props;
         /////////////3D SLIDER//////////////
         let cellWidth,
             radius,
@@ -88,8 +91,8 @@ export default class Slider3D extends Component {
             currSlide = 0,
             prevSlide = 0;
 
-        let cells = document.querySelectorAll(".carousel_cell");
-        let carousel = document.querySelector(".carousel");
+        const cells = document.querySelectorAll(".carousel_cell");
+        const carousel = document.querySelector(".carousel");
 
         ///////////////////CIRCLE PART////////////////////////////
         const apiData = new Artist();
@@ -104,7 +107,6 @@ export default class Slider3D extends Component {
             currentSlide,
             nextSlide,
             previousSlide,
-            detailFlag = false,
             stepAngle = 60;
 
         let rotatePositionList = [];
@@ -199,10 +201,12 @@ export default class Slider3D extends Component {
             circle_items[nextSlide].classList.remove("next");
             circle_items[previousSlide].classList.remove("prev");
             circle_info_items[currentSlide].classList.remove("active");
-            circle_items[currentSlide].removeEventListener(
-                "mouseover",
-                mouseEventActiveCircle,
-            );
+            ["mouseenter", "mouseleave", "click"].forEach((e) => {
+                circle_items[currentSlide].removeEventListener(
+                    e,
+                    mouseEventActiveCircle,
+                );
+            });
 
             currentSlide = lengthCheck(currentSlide, index);
             nextSlide = lengthCheck(nextSlide, index);
@@ -222,10 +226,12 @@ export default class Slider3D extends Component {
             circle_items[nextSlide].classList.add("next");
             circle_items[previousSlide].classList.add("prev");
             circle_info_items[currentSlide].classList.add("active");
-            circle_items[currentSlide].addEventListener(
-                "mouseover",
-                mouseEventActiveCircle,
-            );
+            ["mouseenter", "mouseleave", "click"].forEach((e) => {
+                circle_items[currentSlide].addEventListener(
+                    e,
+                    mouseEventActiveCircle,
+                );
+            });
         }
 
         function lengthCheck(slideIndex, index) {
@@ -243,13 +249,6 @@ export default class Slider3D extends Component {
             let result = (index - angle / 60) % 6;
             return Math.sign(result) == -1 ? result + 6 : result;
         }
-
-        this.addEvent("click", ".circle_prev", () => {
-            slideRotate(-1);
-        });
-        this.addEvent("click", ".circle_next", () => {
-            slideRotate(1);
-        });
 
         function setAlbumList(index) {
             let albumList = artistList[index].albums
@@ -306,41 +305,30 @@ export default class Slider3D extends Component {
                 }, 1000);
             }
         }
-        //hover 했을떄 제목만 튀어나오게?
+
         function mouseEventActiveCircle(e) {
-            if (e.type == "mouseover") {
+            if (e.type == "mouseenter") {
                 let width =
                     circle_items[currentSlide].getBoundingClientRect().width;
                 circle_info.style.right = `-${width + 20}px`;
-                circle_info.style.zIndex = 0;
-            } else if (e.type == "mouseout") {
+            } else if (e.type == "mouseleave") {
                 circle_info.style.right = `-10vh`;
-                circle_info.style.zIndex = -1;
+            } else if (e.type == "click") {
+                //enter 상태로 click 시 enter, leave 값이 더해짐
+                // circle_info.style.right = ``;
+                if (e.target.parentNode.classList.contains("circle_next")) {
+                    slideRotate(1);
+                } else if (
+                    e.target.parentNode.classList.contains("circle_prev")
+                ) {
+                    slideRotate(-1);
+                } else if (
+                    e.target.parentNode.classList.contains("circle_item")
+                ) {
+                    goAlbumPage(e, selectedIndex, currentSlide);
+                }
             }
         }
-
-        function showCircleInfo() {
-            if (!detailFlag) {
-                detailFlag = true;
-
-                let album_detail = `
-                    <div class="circle_info_title">
-
-                    </div>
-                `;
-
-                circle_items[currentSlide].style;
-                circle_info_items[currentSlide].innerHTML = album_detail;
-            }
-            //info 배경과 함께 띄우기
-            //페이지이동 버튼에 props binding
-        }
-        //show info 떠있을때 창 바깥 누르면 info 꺼지게 & X버튼
-
-        this.addEvent("click", ".circle_item", () => {
-            showCircleInfo();
-            // new App(document.querySelector("#app"));
-        });
 
         //default setting
         setCarousel();

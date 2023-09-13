@@ -13,21 +13,10 @@
         transform: translateY(0px);
     }
 }
-html {
-    scrollbar-width: none;
-}
-body {
-    margin: 0;
-    padding: 0;
-    font-family: sans-serif;
-    overflow: hidden scroll;
-    -ms-overflow-style: none;
-}
-body::-webkit-scrollbar {
-    display: none;
-}
+
 .layout {
     height: calc(100vh * 3);
+    font-family: DMSerifDisplay;
 }
 .layout .section-stick {
     position: fixed;
@@ -81,20 +70,12 @@ body::-webkit-scrollbar {
     animation: pulse 1.4s linear infinite normal;
 }
 .layout .s1 {
-    background-color: #4d2536;
     transform: translateY(0);
     z-index: 3;
 }
 .layout .s2 {
-    background-color: #02486b;
     transform: translateY(95vh);
     z-index: 2;
-}
-.layout .s3 {
-    background-color: #171716;
-}
-.layout .s4 {
-    background-color: #154621;
 }
 /*** RESPONSIVE ***/
 /* MOBILE */
@@ -127,13 +108,11 @@ body::-webkit-scrollbar {
 
 .intro_video_text {
     position: absolute;
-    left: -25vw;
-    bottom: 18vh;
+    left: 5vw;
+    bottom: 15vh;
     color: #fff;
-    font-size: 2vw;
-    opacity: 1;
-    transform: translateX(100%);
-    transition: 1s ease-out;
+    font-size: 5vw;
+    line-height: 8vh;
 }
 
 .div_warp {
@@ -152,7 +131,7 @@ body::-webkit-scrollbar {
     display: grid;
     grid-template:
         "image desc" 1fr
-        "list list" 1fr
+        "list list" 2.5fr
         / 1fr 2fr;
 }
 .album_image {
@@ -186,20 +165,30 @@ body::-webkit-scrollbar {
 }
 .track_list_container {
     grid-area: list;
-    display: flex;
-    justify-content: center;
+    display: grid;
     color: white;
-}
-.track_list {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    margin: 3vh 8vw;
+    margin: 3vh 5vw;
 }
 .track_list_title {
     font-size: 2vw;
     text-align: left;
     margin-bottom: 3vh;
+}
+.track_list {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 50vh;
+    overflow: hidden scroll;
+}
+.track_list::-webkit-scrollbar {
+    width: 10px;
+    background: #00000000;
+    border-radius: 12px;
+}
+.track_list::-webkit-scrollbar-thumb {
+    background: #fff;
+    border-radius: 12px;
 }
 .track_list .track {
     display: flex;
