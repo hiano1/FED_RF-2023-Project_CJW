@@ -81,7 +81,7 @@ export default class Slider3D extends Component {
     `;
     }
     setEvent() {
-        const { goAlbumPage } = this.props;
+        const { goAlbumPage, getMusicPlayer } = this.props;
         /////////////3D SLIDER//////////////
         let cellWidth,
             radius,
@@ -174,7 +174,7 @@ export default class Slider3D extends Component {
             setAlbumList(currSlide);
         });
         this.addEvent("click", ".goMain2", () => {
-            new MusicPlayer(document.querySelector("#fixed"), cellWidth);
+            getMusicPlayer();
         });
 
         ///////////////////CIRCLE PART////////////////////////////

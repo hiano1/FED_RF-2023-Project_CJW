@@ -1,6 +1,7 @@
 import Component from "../core/Component.js";
 import Carousel from "../components/Slider3d.js";
 import AlbumPage from "./AlbumPage.js";
+import MusicPlayer from "../components/MusicPlayer.js";
 
 export default class MainPage extends Component {
     setup() {}
@@ -13,10 +14,11 @@ export default class MainPage extends Component {
     }
 
     mounted() {
+        const { goAlbumPage, getMusicPlayer } = this;
         const $Carousel = this.$target.querySelector(".main_content");
-        const { goAlbumPage } = this;
         new Carousel($Carousel, {
             goAlbumPage: goAlbumPage.bind(this),
+            getMusicPlayer: getMusicPlayer.bind(this),
         });
     }
 
@@ -43,5 +45,9 @@ export default class MainPage extends Component {
             loading.style.height = `0vw`;
             loading.style.width = `0vw`;
         }, 1500);
+    }
+
+    getMusicPlayer() {
+        new MusicPlayer(document.querySelector("#fixed"));
     }
 }

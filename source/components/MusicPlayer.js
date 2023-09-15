@@ -108,46 +108,46 @@ export default class MusicPlayer extends Component {
     }
 
     setEvent() {
-        let track_info = document.querySelector(".track_info");
-        let track_art = document.querySelector(".track_art");
-        let track_name = document.querySelector(".track_name span");
-        let track_artist = document.querySelector(".track_artist span");
+        /////////////api default setting//////////////
 
-        let playpause_btn = document.querySelector(".playpause_track");
-        let next_btn = document.querySelector(".next_track");
-        let prev_btn = document.querySelector(".prev_track");
-        let player_close_button = document.querySelector(
-            ".player_close_button",
-        );
-
-        let track_slider = document.querySelector(".track_slider");
-        let volume_slider = document.querySelector(".volume_slider");
-        let curr_time = document.querySelector(".current_time");
-        let total_duration = document.querySelector(".total_duration");
-        let track_index = 0;
-        let isPlaying = false;
-        let updateTimer;
-        let curr_track = document.createElement("audio");
-        let track_list = [
-            {
-                name: "Night Owl",
-                artist: "Broke For Free",
-                image: "Image URL",
-                path: "./source/resource/test_music.mp3",
-            },
-            {
-                name: "Enthusiast",
-                artist: "Tours",
-                image: "Image URL",
-                path: "../source/resource/colabs-hero.mp4",
-            },
-            {
-                name: "Shipping Lanes",
-                artist: "Chad Crouch",
-                image: "Image URL",
-                path: "Shipping_Lanes.mp3",
-            },
-        ];
+        let track_info = document.querySelector(".track_info"),
+            track_art = document.querySelector(".track_art"),
+            track_name = document.querySelector(".track_name span"),
+            track_artist = document.querySelector(".track_artist span"),
+            playpause_btn = document.querySelector(".playpause_track"),
+            next_btn = document.querySelector(".next_track"),
+            prev_btn = document.querySelector(".prev_track"),
+            player_close_button = document.querySelector(
+                ".player_close_button",
+            ),
+            track_slider = document.querySelector(".track_slider"),
+            volume_slider = document.querySelector(".volume_slider"),
+            curr_time = document.querySelector(".current_time"),
+            total_duration = document.querySelector(".total_duration"),
+            track_index = 0,
+            isPlaying = false,
+            updateTimer,
+            curr_track = document.createElement("audio"),
+            track_list = [
+                {
+                    name: "Night Owl",
+                    artist: "Broke For Free",
+                    image: "Image URL",
+                    path: "./source/resource/test_music.mp3",
+                },
+                {
+                    name: "Enthusiast",
+                    artist: "Tours",
+                    image: "Image URL",
+                    path: "../source/resource/colabs-hero.mp4",
+                },
+                {
+                    name: "Shipping Lanes",
+                    artist: "Chad Crouch",
+                    image: "Image URL",
+                    path: "Shipping_Lanes.mp3",
+                },
+            ];
 
         function loadTrack(track_index) {
             clearInterval(updateTimer);
