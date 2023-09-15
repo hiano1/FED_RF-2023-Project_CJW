@@ -181,7 +181,6 @@ export default class AlbumDetail extends Component {
                 startFlag = false;
             }
             // Keep scrollbar in the middle of the viewport
-            window.scroll(0, window.screen.height);
         }
 
         function clickPageNav(e) {

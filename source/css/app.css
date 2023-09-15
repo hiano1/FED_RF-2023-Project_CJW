@@ -40,7 +40,7 @@ body {
     font-family: sans-serif;
     text-align: center;
     background-color: rgb(28, 28, 28);
-    overflow: hidden scroll;
+    overflow: hidden;
     -moz-user-select: none;
     -ms-use-select: none;
     user-select: none;

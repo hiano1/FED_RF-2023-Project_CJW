@@ -1,6 +1,6 @@
 .circle_slider {
     color: white;
-    position: absolute;
+    position: fixed;
     width: 100vh;
     height: 100vh;
     z-index: 1;

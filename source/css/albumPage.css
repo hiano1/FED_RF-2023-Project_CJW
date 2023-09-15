@@ -209,7 +209,6 @@
 .track_list .track {
     display: flex;
     align-items: center;
-    padding: 1vw 2vh;
     background-color: rgb(51, 48, 48);
     border-radius: 1vw;
     margin-bottom: 1vw;

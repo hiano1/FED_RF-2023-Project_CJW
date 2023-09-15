@@ -38,6 +38,7 @@ export default class MainPage extends Component {
                 artistIndex: selectedIndex,
                 albumIndex: currentSlide,
             });
+            document.querySelector("body").style.overflow = "hidden scroll";
         }, 1000);
 
         setTimeout(() => {

@@ -56,6 +56,11 @@ export default class Slider3D extends Component {
     }
     template() {
         return `
+        <header class= "header_logo">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="#ffffff" viewBox="0 0 512 512">
+                <path d="M499.1 6.3c8.1 6 12.9 15.6 12.9 25.7v72V368c0 44.2-43 80-96 80s-96-35.8-96-80s43-80 96-80c11.2 0 22 1.6 32 4.6V147L192 223.8V432c0 44.2-43 80-96 80s-96-35.8-96-80s43-80 96-80c11.2 0 22 1.6 32 4.6V200 128c0-14.1 9.3-26.6 22.8-30.7l320-96c9.7-2.9 20.2-1.1 28.3 5z"/>
+            </svg>
+        </header>
         <div class="circle_slider">
             <div class="circle_warper">
                 ${this.albumList}
@@ -70,8 +75,8 @@ export default class Slider3D extends Component {
             </div>
         </div>
         <div class="carousel_control">
-                <div class="goMain2">22</div>
-        <div class="carousel_prev">
+            <div class="goMain2">22</div>
+            <div class="carousel_prev">
                 <svg xmlns="http://www.w3.org/2000/svg" height="80" viewBox="0 -960 960 960" width="80" fill="#F9F8F6"><path d="M400-240 160-480l240-240 56 58-142 142h486v80H314l142 142-56 58Z"/></svg>
             </div>
             <div class="carousel_next">
@@ -82,6 +87,7 @@ export default class Slider3D extends Component {
     }
     setEvent() {
         const { goAlbumPage, getMusicPlayer } = this.props;
+        let eventFlag = true;
         /////////////3D SLIDER//////////////
         let cellWidth,
             radius,
@@ -166,12 +172,24 @@ export default class Slider3D extends Component {
         }
 
         this.addEvent("click", ".carousel_prev", () => {
-            rotateCarousel(-1);
-            setAlbumList(currSlide);
+            if (eventFlag) {
+                eventFlag = false;
+                rotateCarousel(-1);
+                setAlbumList(currSlide);
+                setTimeout(() => {
+                    eventFlag = true;
+                }, 600);
+            }
         });
         this.addEvent("click", ".carousel_next", () => {
-            rotateCarousel(1);
-            setAlbumList(currSlide);
+            if (eventFlag) {
+                eventFlag = false;
+                rotateCarousel(1);
+                setAlbumList(currSlide);
+                setTimeout(() => {
+                    eventFlag = true;
+                }, 600);
+            }
         });
         this.addEvent("click", ".goMain2", () => {
             getMusicPlayer();
@@ -204,7 +222,7 @@ export default class Slider3D extends Component {
             ["mouseenter", "mouseleave", "click"].forEach((e) => {
                 circle_items[currentSlide].removeEventListener(
                     e,
-                    mouseEventActiveCircle,
+                    eventActiveCircle,
                 );
             });
 
@@ -229,7 +247,7 @@ export default class Slider3D extends Component {
             ["mouseenter", "mouseleave", "click"].forEach((e) => {
                 circle_items[currentSlide].addEventListener(
                     e,
-                    mouseEventActiveCircle,
+                    eventActiveCircle,
                 );
             });
         }
@@ -306,7 +324,8 @@ export default class Slider3D extends Component {
             }
         }
 
-        function mouseEventActiveCircle(e) {
+        function eventActiveCircle(e) {
+            console.log(e.type);
             if (e.type == "mouseenter") {
                 let width =
                     circle_items[currentSlide].getBoundingClientRect().width;
@@ -325,10 +344,30 @@ export default class Slider3D extends Component {
                 } else if (
                     e.target.parentNode.classList.contains("circle_item")
                 ) {
-                    goAlbumPage(e, selectedIndex, currentSlide);
+                    goAlbumPage(e, currSlide, currentSlide);
                 }
             }
         }
+
+        window.addEventListener("keydown", (e) => {
+            if (eventFlag) {
+                eventFlag = false;
+                if (e.key === "ArrowUp") {
+                    slideRotate(-1);
+                } else if (e.key === "ArrowDown") {
+                    slideRotate(1);
+                } else if (e.key === "ArrowRight") {
+                    rotateCarousel(1);
+                    setAlbumList(currSlide);
+                } else if (e.key === "ArrowLeft") {
+                    rotateCarousel(-1);
+                    setAlbumList(currSlide);
+                }
+                setTimeout(() => {
+                    eventFlag = true;
+                }, 600);
+            }
+        });
 
         //default setting
         setCarousel();

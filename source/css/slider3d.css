@@ -1,4 +1,15 @@
+.header_logo {
+    position: absolute;
+    width: 5rem;
+    top: 2%;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #4492f8b2;
+    border-radius: 50%;
+}
+
 .scene {
+    position: fixed;
     width: 100vw;
     height: 100vh;
     perspective: 1000px;
@@ -85,6 +96,6 @@
 }
 
 .carousel_control path {
-    stroke: #f91616;
+    stroke: #4e77ffc2;
     stroke-width: 14px;
 }
