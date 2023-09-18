@@ -1,11 +1,12 @@
 .header_logo {
-    position: absolute;
+    position: fixed;
     width: 5rem;
     top: 2%;
     left: 50%;
     transform: translateX(-50%);
     background-color: #4492f8b2;
     border-radius: 50%;
+    z-index: 5;
 }
 
 .scene {
@@ -98,4 +99,9 @@
 .carousel_control path {
     stroke: #4e77ffc2;
     stroke-width: 14px;
+}
+
+.goMain2 {
+    align-self: center;
+    opacity: 0.1;
 }

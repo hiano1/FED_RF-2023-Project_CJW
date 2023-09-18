@@ -8,7 +8,6 @@ export default class MainPage extends Component {
 
     template() {
         return `
-        <div class="loading"></div>
         <div class="main_content"></div>
     `;
     }
@@ -46,6 +45,10 @@ export default class MainPage extends Component {
             loading.style.height = `0vw`;
             loading.style.width = `0vw`;
         }, 1500);
+
+        setTimeout(() => {
+            loading.style = "";
+        }, 2500);
     }
 
     getMusicPlayer() {

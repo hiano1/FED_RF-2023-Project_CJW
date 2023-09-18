@@ -32,13 +32,20 @@ export default class AlbumDetail extends Component {
             .join("");
 
         return `
+        <div class="album_header">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="#ffffff" viewBox="0 0 512 512">
+                <path d="M499.1 6.3c8.1 6 12.9 15.6 12.9 25.7v72V368c0 44.2-43 80-96 80s-96-35.8-96-80s43-80 96-80c11.2 0 22 1.6 32 4.6V147L192 223.8V432c0 44.2-43 80-96 80s-96-35.8-96-80s43-80 96-80c11.2 0 22 1.6 32 4.6V200 128c0-14.1 9.3-26.6 22.8-30.7l320-96c9.7-2.9 20.2-1.1 28.3 5z"/>
+            </svg>
+        </div>
         <div class="section_nav">
             <div class="stick active"></div>
         </div>
 
         <section class="s1">
             <div class="intro_stiky_video">
-                <video src="source/resource/colabs-hero.mp4" autoplay muted playsinline loop></video>
+                <div style="grayscale(1)">
+                <iframe src="https://player.vimeo.com/video/845597890?h=4a8463d949&background=1" style="position:absolute;width:100%;height:100%;" frameborder="0"></iframe>
+                </div>
                 <div class="intro_video_text">
                     <h2>${albumData.title} </br> ${albumData.titleSong}</h2>
                 </div>
@@ -138,7 +145,8 @@ export default class AlbumDetail extends Component {
     }
 
     setEvent() {
-        const TIME_OUT = 600,
+        const { goMainPage } = this.props,
+            TIME_OUT = 600,
             sections = document.querySelectorAll("section"),
             sectionStick = document.querySelector(".section_nav");
         let startFlag = true,
@@ -168,12 +176,9 @@ export default class AlbumDetail extends Component {
                         next.style.transform = "translateY(100vh)";
                         index--;
                     }
-                    const active = document.querySelector(
-                        ".section_nav .stick.active",
-                    );
+                    const active = document.querySelector(".section_nav .stick.active");
                     active.style.top = 11 * (index - 1) + "vh";
                 }
-                // Wait for the scrolling to finish to reset the values
                 setTimeout(() => {
                     initialScroll = window.scrollY;
                     startFlag = true;
@@ -208,9 +213,7 @@ export default class AlbumDetail extends Component {
                     index = nav;
                 }
 
-                const active = document.querySelector(
-                    ".section_nav .stick.active",
-                );
+                const active = document.querySelector(".section_nav .stick.active");
                 active.style.top = 11 * (index - 1) + "vh";
 
                 setTimeout(() => {
@@ -228,6 +231,9 @@ export default class AlbumDetail extends Component {
 
         this.addEvent("click", ".stick", (e) => {
             clickPageNav(e);
+        });
+        this.addEvent("click", ".album_header", (e) => {
+            goMainPage(e);
         });
     }
 }

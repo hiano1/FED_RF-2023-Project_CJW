@@ -1,4 +1,5 @@
 import AlbumDetail from "../components/AlbumDetail.js";
+import MainPage from "../pages/MainPage.js";
 import Component from "../core/Component.js";
 
 export default class AlbumPage extends Component {
@@ -11,8 +12,35 @@ export default class AlbumPage extends Component {
     }
 
     mounted() {
-        const { artistIndex, albumIndex } = this.props;
-        const $AlbumDetail = this.$target.querySelector(".layout");
-        new AlbumDetail($AlbumDetail, { artistIndex, albumIndex });
+        const { artistIndex, albumIndex } = this.props,
+            { goMainPage } = this,
+            $AlbumDetail = this.$target.querySelector(".layout");
+        new AlbumDetail($AlbumDetail, { artistIndex, albumIndex, goMainPage: goMainPage.bind(this) });
+    }
+
+    goMainPage(e) {
+        const loading = document.querySelector(".loading");
+
+        loading.style.left = `${e.clientX}px`;
+        loading.style.top = `${e.clientY}px`;
+        loading.style.opacity = `1`;
+        loading.style.transition = `1s ease-in-out all`;
+        loading.style.width = `250vw`;
+        loading.style.height = `250vw`;
+
+        // contents change
+        setTimeout(() => {
+            new MainPage(document.querySelector("#app"));
+        }, 1000);
+
+        setTimeout(() => {
+            loading.style.transition = `1s ease-in-out all`;
+            loading.style.height = `0vw`;
+            loading.style.width = `0vw`;
+        }, 1500);
+
+        setTimeout(() => {
+            loading.style = "";
+        }, 2500);
     }
 }

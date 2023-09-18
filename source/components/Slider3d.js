@@ -25,13 +25,7 @@ export default class Slider3D extends Component {
             .map(
                 (item, index) => `
                 <div class="circle_item ${
-                    index == 0
-                        ? "active"
-                        : index == 1
-                        ? "next"
-                        : index == artistList[0].albums.length - 1
-                        ? "prev"
-                        : ""
+                    index == 0 ? "active" : index == 1 ? "next" : index == artistList[0].albums.length - 1 ? "prev" : ""
                 }">
                     <img src="${item.albumArt}"/>
                     <div class="circle_prev">
@@ -75,7 +69,7 @@ export default class Slider3D extends Component {
             </div>
         </div>
         <div class="carousel_control">
-            <div class="goMain2">22</div>
+            <div class="goMain2">Test Player</div>
             <div class="carousel_prev">
                 <svg xmlns="http://www.w3.org/2000/svg" height="80" viewBox="0 -960 960 960" width="80" fill="#F9F8F6"><path d="M400-240 160-480l240-240 56 58-142 142h486v80H314l142 142-56 58Z"/></svg>
             </div>
@@ -109,6 +103,7 @@ export default class Slider3D extends Component {
             circle_items,
             circle_info,
             circle_info_items,
+            circle_width,
             currentAngle,
             currentSlide,
             nextSlide,
@@ -178,7 +173,7 @@ export default class Slider3D extends Component {
                 setAlbumList(currSlide);
                 setTimeout(() => {
                     eventFlag = true;
-                }, 600);
+                }, 1000);
             }
         });
         this.addEvent("click", ".carousel_next", () => {
@@ -188,7 +183,7 @@ export default class Slider3D extends Component {
                 setAlbumList(currSlide);
                 setTimeout(() => {
                     eventFlag = true;
-                }, 600);
+                }, 1000);
             }
         });
         this.addEvent("click", ".goMain2", () => {
@@ -200,8 +195,14 @@ export default class Slider3D extends Component {
         function setCircleSize() {
             let radius = window.innerHeight;
             let itemsAngle = (2 * Math.PI) / 6;
-
-            circle_slider.style.transform = `translateX(-${radius * 0.6}px)`;
+            let mediaQueryScale = window.innerHeight / window.innerWidth;
+            if (mediaQueryScale > 0.8) {
+                mediaQueryScale = 0.8;
+            } else if (mediaQueryScale < 0.55) {
+                mediaQueryScale = 0.55;
+            }
+            circle_width = circle_items[currentSlide].getBoundingClientRect().width;
+            circle_slider.style.transform = `translateX(-${radius * mediaQueryScale}px)`;
 
             for (let i = 0; i < 6; i++) {
                 let x = (radius / 2) * Math.cos(itemsAngle * i - Math.PI / 2),
@@ -220,10 +221,7 @@ export default class Slider3D extends Component {
             circle_items[previousSlide].classList.remove("prev");
             circle_info_items[currentSlide].classList.remove("active");
             ["mouseenter", "mouseleave", "click"].forEach((e) => {
-                circle_items[currentSlide].removeEventListener(
-                    e,
-                    eventActiveCircle,
-                );
+                circle_items[currentSlide].removeEventListener(e, eventActiveCircle);
             });
 
             currentSlide = lengthCheck(currentSlide, index);
@@ -233,22 +231,16 @@ export default class Slider3D extends Component {
             currentAngle += stepAngle * -index;
             circle_warper.style.transform = `rotate(${currentAngle}deg)`;
 
-            circle_items[currentSlide].style.transform =
-                rotatePositionList[positionCheck(0, currentAngle)];
-            circle_items[nextSlide].style.transform =
-                rotatePositionList[positionCheck(1, currentAngle)];
-            circle_items[previousSlide].style.transform =
-                rotatePositionList[positionCheck(5, currentAngle)];
+            circle_items[currentSlide].style.transform = rotatePositionList[positionCheck(0, currentAngle)];
+            circle_items[nextSlide].style.transform = rotatePositionList[positionCheck(1, currentAngle)];
+            circle_items[previousSlide].style.transform = rotatePositionList[positionCheck(5, currentAngle)];
 
             circle_items[currentSlide].classList.add("active");
             circle_items[nextSlide].classList.add("next");
             circle_items[previousSlide].classList.add("prev");
             circle_info_items[currentSlide].classList.add("active");
             ["mouseenter", "mouseleave", "click"].forEach((e) => {
-                circle_items[currentSlide].addEventListener(
-                    e,
-                    eventActiveCircle,
-                );
+                circle_items[currentSlide].addEventListener(e, eventActiveCircle);
             });
         }
 
@@ -273,13 +265,7 @@ export default class Slider3D extends Component {
                 .map(
                     (item, index) => `
                 <div class="circle_item ${
-                    index == 0
-                        ? "active"
-                        : index == 1
-                        ? "next"
-                        : index == artistList[0].albums.length - 1
-                        ? "prev"
-                        : ""
+                    index == 0 ? "active" : index == 1 ? "next" : index == artistList[0].albums.length - 1 ? "prev" : ""
                 }">
                     <img src="${item.albumArt}"/>
                     <div class="circle_prev">
@@ -325,25 +311,16 @@ export default class Slider3D extends Component {
         }
 
         function eventActiveCircle(e) {
-            console.log(e.type);
             if (e.type == "mouseenter") {
-                let width =
-                    circle_items[currentSlide].getBoundingClientRect().width;
-                circle_info.style.right = `-${width + 20}px`;
+                circle_info.style.right = `-${circle_width + 25}px`;
             } else if (e.type == "mouseleave") {
-                circle_info.style.right = `-10vh`;
+                circle_info.style.right = ``;
             } else if (e.type == "click") {
-                //enter 상태로 click 시 enter, leave 값이 더해짐
-                // circle_info.style.right = ``;
                 if (e.target.parentNode.classList.contains("circle_next")) {
                     slideRotate(1);
-                } else if (
-                    e.target.parentNode.classList.contains("circle_prev")
-                ) {
+                } else if (e.target.parentNode.classList.contains("circle_prev")) {
                     slideRotate(-1);
-                } else if (
-                    e.target.parentNode.classList.contains("circle_item")
-                ) {
+                } else if (e.target.parentNode.classList.contains("circle_item")) {
                     goAlbumPage(e, currSlide, currentSlide);
                 }
             }
@@ -365,7 +342,7 @@ export default class Slider3D extends Component {
                 }
                 setTimeout(() => {
                     eventFlag = true;
-                }, 600);
+                }, 1000);
             }
         });
 
