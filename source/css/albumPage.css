@@ -140,9 +140,9 @@
     height: 90vh;
     display: grid;
     grid-template:
-        "image desc" 40%
+        "image desc" 36%
         "list list" 60%
-        / 35% 65%;
+        / 35% auto;
     gap: 2vw;
 }
 .album_image {

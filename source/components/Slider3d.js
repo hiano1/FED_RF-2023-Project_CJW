@@ -67,7 +67,6 @@ export default class Slider3D extends Component {
             </div>
         </div>
         <div class="carousel_control">
-            <div class="goMain2">Test Player</div>
             <div class="carousel_prev">
                 <svg style="width:80px; height:80px; fill:currentColor;" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg"><path d="M402.7392 877.2608l-320-320c-24.9856-24.9856-24.9856-65.51552 0-90.50112l320-320c24.9856-24.9856 65.51552-24.9856 90.50112 0s24.9856 65.51552 0 90.50112l-210.7392 210.7392 613.49888 0c35.34848 0 64 28.65152 64 64s-28.65152 64-64 64l-613.49888 0 210.7392 210.7392c12.4928 12.4928 18.7392 28.8768 18.7392 45.2608s-6.2464 32.768-18.7392 45.2608c-24.9856 24.9856-65.51552 24.9856-90.50112 0z"  /></svg>
             </div>
@@ -183,9 +182,6 @@ export default class Slider3D extends Component {
                     eventFlag = true;
                 }, 1000);
             }
-        });
-        this.addEvent("click", ".goMain2", () => {
-            getMusicPlayer();
         });
 
         ///////////////////CIRCLE PART////////////////////////////
