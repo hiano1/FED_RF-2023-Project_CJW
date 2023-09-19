@@ -44,7 +44,7 @@ export default class AlbumDetail extends Component {
         <section class="s1">
             <div class="intro_stiky_video">
                 <div style="">
-                <iframe src="https://player.vimeo.com/video/845597890?h=4a8463d949&background=1" style="position:absolute;width:100%;height:100%;" frameborder="0"></iframe>
+                <iframe src="https://player.vimeo.com/video/845597890?background=1" style="position:absolute;width:100%;height:100%;" frameborder="0"></iframe>
                 </div>
                 <div class="intro_video_text">
                     <h2>${albumData.title} </br> ${albumData.titleSong}</h2>
