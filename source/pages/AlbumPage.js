@@ -1,6 +1,7 @@
 import AlbumDetail from "../components/AlbumDetail.js";
 import MainPage from "../pages/MainPage.js";
 import Component from "../core/Component.js";
+import MusicPlayer from "../components/MusicPlayer.js";
 
 export default class AlbumPage extends Component {
     setup() {}
@@ -13,9 +14,15 @@ export default class AlbumPage extends Component {
 
     mounted() {
         const { artistIndex, albumIndex } = this.props,
-            { goMainPage } = this,
+            { goMainPage, getMusicPlayer } = this,
             $AlbumDetail = this.$target.querySelector(".layout");
-        new AlbumDetail($AlbumDetail, { artistIndex, albumIndex, goMainPage: goMainPage.bind(this) });
+
+        new AlbumDetail($AlbumDetail, {
+            artistIndex: artistIndex,
+            albumIndex: albumIndex,
+            goMainPage: goMainPage.bind(this),
+            getMusicPlayer: getMusicPlayer.bind(this),
+        });
     }
 
     goMainPage(e) {
@@ -42,5 +49,8 @@ export default class AlbumPage extends Component {
         setTimeout(() => {
             loading.style = "";
         }, 2500);
+    }
+    getMusicPlayer(trackId) {
+        new MusicPlayer(document.querySelector("#fixed"), trackId);
     }
 }

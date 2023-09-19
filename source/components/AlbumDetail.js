@@ -15,7 +15,7 @@ export default class AlbumDetail extends Component {
                 <div class="tracklist_title">${item.name}</div>
                 <div class="tracklist_artist">${item.artist}</div>
                 <div class="tracklist_button">
-                    <div class="tracklist_play">
+                    <div class="tracklist_play" data-trackId ="${item.trackId}">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="#ffffff" viewBox="0 -960 960 960" >
                             <path d="M320-200v-560l440 280-440 280Zm80-280Zm0 134 210-134-210-134v268Z"/>
                         </svg>
@@ -145,7 +145,7 @@ export default class AlbumDetail extends Component {
     }
 
     setEvent() {
-        const { goMainPage } = this.props,
+        const { goMainPage, getMusicPlayer } = this.props,
             TIME_OUT = 600,
             sections = document.querySelectorAll("section"),
             sectionStick = document.querySelector(".section_nav");
@@ -234,6 +234,9 @@ export default class AlbumDetail extends Component {
         });
         this.addEvent("click", ".album_header", (e) => {
             goMainPage(e);
+        });
+        this.addEvent("click", ".tracklist_play", (e) => {
+            getMusicPlayer(e.target.parentNode.dataset.trackid);
         });
     }
 }

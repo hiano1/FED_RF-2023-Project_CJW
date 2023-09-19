@@ -4,9 +4,10 @@
     top: 2%;
     left: 50%;
     transform: translateX(-50%);
-    background-color: #4492f8b2;
+    background-color: #fa7c7cb2;
     border-radius: 50%;
-    z-index: 5;
+    filter: drop-shadow(5px 5px 5px rgb(175, 36, 36));
+    z-index: 1;
 }
 
 .scene {

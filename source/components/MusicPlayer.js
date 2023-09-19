@@ -2,8 +2,13 @@ import Component from "../core/Component.js";
 
 export default class MusicPlayer extends Component {
     template() {
+        // <div style="line-break: anywhere;word-break: normal;overflow: hidden;white-space: nowrap;text-overflow: ellipsis;">
+        const trackId = this.props;
         return `        
         <div class="fixedPlayer">
+        <iframe id="soundCloudWidget" width="100%" height="166" scrolling="no" frameborder="no" allow="autoplay" 
+        src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/${trackId}&auto_play=true"></iframe>
+        </div>
         <div class="track_slider_container">
             <div class="current_time">00:00</div>
             <input
@@ -109,6 +114,22 @@ export default class MusicPlayer extends Component {
 
     setEvent() {
         /////////////api default setting//////////////
+        let soundCloudWidget = document.getElementById("soundCloudWidget");
+        let widget = SC.Widget(soundCloudWidget);
+
+        widget.bind(SC.Widget.Events.READY, function () {
+            widget.bind(SC.Widget.Events.PLAY, function () {
+                // get information about currently playing sound
+                widget.getCurrentSound((currentSound) => {
+                    console.log(currentSound);
+                    // duration, full_duration,id
+                });
+            });
+            widget.setVolume(50);
+            widget.getVolume(function (volume) {
+                console.log("current volume value is " + volume);
+            });
+        });
 
         let track_info = document.querySelector(".track_info"),
             track_art = document.querySelector(".track_art"),
@@ -117,9 +138,7 @@ export default class MusicPlayer extends Component {
             playpause_btn = document.querySelector(".playpause_track"),
             next_btn = document.querySelector(".next_track"),
             prev_btn = document.querySelector(".prev_track"),
-            player_close_button = document.querySelector(
-                ".player_close_button",
-            ),
+            player_close_button = document.querySelector(".player_close_button"),
             track_slider = document.querySelector(".track_slider"),
             volume_slider = document.querySelector(".volume_slider"),
             curr_time = document.querySelector(".current_time"),
@@ -193,18 +212,14 @@ export default class MusicPlayer extends Component {
 
         function nextTrack() {
             //if last to first
-            track_index < track_list.length - 1
-                ? (track_index += 1)
-                : (track_index = 0);
+            track_index < track_list.length - 1 ? (track_index += 1) : (track_index = 0);
 
             loadTrack(track_index);
             playTrack();
         }
 
         function prevTrack() {
-            track_index > 0
-                ? (track_index -= 1)
-                : (track_index = track_list.length - 1);
+            track_index > 0 ? (track_index -= 1) : (track_index = track_list.length - 1);
 
             loadTrack(track_index);
             playTrack();
@@ -224,18 +239,13 @@ export default class MusicPlayer extends Component {
             let seekPosition = 0;
 
             if (!isNaN(curr_track.duration)) {
-                seekPosition =
-                    curr_track.currentTime * (100 / curr_track.duration);
+                seekPosition = curr_track.currentTime * (100 / curr_track.duration);
                 track_slider.value = seekPosition;
 
                 let currentMinutes = Math.floor(curr_track.currentTime / 60);
-                let currentSeconds = Math.floor(
-                    curr_track.currentTime - currentMinutes * 60,
-                );
+                let currentSeconds = Math.floor(curr_track.currentTime - currentMinutes * 60);
                 let durationMinutes = Math.floor(curr_track.duration / 60);
-                let durationSeconds = Math.floor(
-                    curr_track.duration - durationMinutes * 60,
-                );
+                let durationSeconds = Math.floor(curr_track.duration - durationMinutes * 60);
 
                 if (currentSeconds < 10) {
                     currentSeconds = "0" + currentSeconds;
@@ -251,8 +261,7 @@ export default class MusicPlayer extends Component {
                 }
 
                 curr_time.textContent = currentMinutes + ":" + currentSeconds;
-                total_duration.textContent =
-                    durationMinutes + ":" + durationSeconds;
+                total_duration.textContent = durationMinutes + ":" + durationSeconds;
             }
         }
 

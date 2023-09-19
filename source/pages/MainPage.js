@@ -28,8 +28,8 @@ export default class MainPage extends Component {
         loading.style.top = `${e.clientY}px`;
         loading.style.opacity = `1`;
         loading.style.transition = `0.8s ease-in-out all`;
-        loading.style.width = `200vw`;
-        loading.style.height = `200vw`;
+        loading.style.width = `250vw`;
+        loading.style.height = `250vw`;
 
         // contents change
         setTimeout(() => {
