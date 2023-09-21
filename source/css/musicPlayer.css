@@ -10,7 +10,7 @@
         "b c d" auto/
         1fr 1fr 1fr;
     width: 100vw;
-    height: 270px;
+    height: 100px;
     z-index: 1000;
 }
 .track_slider_container {
@@ -60,6 +60,7 @@
     padding-left: 1vw;
     white-space: nowrap;
     text-overflow: ellipsis;
+    text-align: left;
 }
 .track_name {
     display: flex;

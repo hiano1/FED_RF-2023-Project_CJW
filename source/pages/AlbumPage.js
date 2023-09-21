@@ -4,6 +4,7 @@ import Component from "../core/Component.js";
 import MusicPlayer from "../components/MusicPlayer.js";
 
 export default class AlbumPage extends Component {
+    trackList = [];
     setup() {}
 
     template() {
@@ -51,6 +52,10 @@ export default class AlbumPage extends Component {
         }, 2500);
     }
     getMusicPlayer(props) {
-        new MusicPlayer(document.querySelector("#fixed"), props);
+        this.trackList.push(props);
+        new MusicPlayer(document.querySelector("#fixed"), {
+            infoList: props,
+            trackList: this.trackList,
+        });
     }
 }

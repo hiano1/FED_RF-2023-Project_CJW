@@ -2,11 +2,12 @@ import Component from "../core/Component.js";
 
 export default class MusicPlayer extends Component {
     template() {
-        const props = this.props;
+        const { infoList } = this.props;
+        const info = infoList.split(",");
         return `        
         <div class="fixedPlayer">
         <iframe id="soundCloudWidget" width="100%" height="166" scrolling="no" frameborder="no" allow="autoplay" 
-        src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/${props[0]}&auto_play=true"></iframe>
+        src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/${info[0]}&auto_play=true"></iframe>
         <div style="line-break: anywhere;word-break: normal;overflow: hidden;white-space: nowrap;text-overflow: ellipsis;">
         </div>
         <div class="track_slider_container">
@@ -22,14 +23,14 @@ export default class MusicPlayer extends Component {
         </div>
         <div class="track_info">
             <div class="track_art">
-                <img src="${props[1]}" alt="" />
+                <img src="${info[1]}" alt="" />
             </div>
             <div class="title_box">
                 <div class="track_name">
-                    <span></span>
+                    <span>${info[2]}</span>
                 </div>
                 <div class="track_artist">
-                    <span></span>
+                    <span>${info[3]}</span>
                 </div>
             </div>
         </div>
@@ -113,8 +114,8 @@ export default class MusicPlayer extends Component {
     }
 
     setEvent() {
-        const { artist, title } = this.props;
-
+        const { trackList } = this.props;
+        console.log(trackList);
         ///////////////custom player ui setting//////////////////
         let track_info = document.querySelector(".track_info"),
             track_name = document.querySelector(".track_name span"),
@@ -130,11 +131,8 @@ export default class MusicPlayer extends Component {
             track_index = 0,
             isReadyPlayer = false,
             isPlaying = false,
-            updateTimer,
-            track_list = [];
+            updateTimer;
 
-        //호출되면 리스트에 노래 데이터 담기
-        //플레이 리스트 추가 --> 나중
         /////////////sound cloud setting//////////////
         let soundCloudWidget,
             widget,
@@ -152,10 +150,8 @@ export default class MusicPlayer extends Component {
             widget = SC.Widget(soundCloudWidget);
             clearInterval(updateTimer);
             resetValues();
-            ////////////////////////
-            track_list.push("id");
-            track_name.textContent = artist;
-            track_artist.textContent = title;
+            // track_name.textContent = props[2];
+            // track_artist.textContent = props[3];
 
             //api setting
             widget.bind(SC.Widget.Events.READY, () => {
@@ -173,7 +169,6 @@ export default class MusicPlayer extends Component {
                                     isSeekUpdate = true;
                                 });
                             }, 1000);
-                            console.log(totalDuration);
                         }
                     });
                     togglePlayButton();

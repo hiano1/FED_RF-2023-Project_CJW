@@ -15,7 +15,9 @@ export default class AlbumDetail extends Component {
                 <div class="tracklist_title">${item.name}</div>
                 <div class="tracklist_artist">${item.artist}</div>
                 <div class="tracklist_button">
-                    <div class="tracklist_play" data-trackId ="${item.trackId}" data-artSrc="${albumData.albumArt}">
+                    <div class="tracklist_play" data-info ="${item.trackId},${albumData.albumArt},${item.name},${
+                        item.artist
+                    }">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="#ffffff" viewBox="0 -960 960 960" >
                             <path d="M320-200v-560l440 280-440 280Zm80-280Zm0 134 210-134-210-134v268Z"/>
                         </svg>
@@ -191,7 +193,6 @@ export default class AlbumDetail extends Component {
         function clickPageNav(e) {
             let p = e.target.parentElement;
             let nav = Array.prototype.indexOf.call(p.children, e.target);
-            console.log(nav);
             if (startFlag) {
                 if (nav > index) {
                     main = document.querySelector(`section.s${index}`);
@@ -236,8 +237,15 @@ export default class AlbumDetail extends Component {
             goMainPage(e);
         });
         this.addEvent("click", ".tracklist_play", (e) => {
-            let props = [e.target.parentNode.dataset.trackid, e.target.parentNode.dataset.artsrc];
+            let props = e.target.parentNode.dataset.info;
+
             getMusicPlayer(props);
+        });
+        this.addEvent("mouseover", ".album_content", (e) => {
+            e.target.style.transform = "scale(1.2)";
+        });
+        this.addEvent("mouseout", ".album_content", (e) => {
+            e.target.style.transform = "";
         });
     }
 }
