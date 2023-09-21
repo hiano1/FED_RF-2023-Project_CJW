@@ -50,7 +50,7 @@ export default class AlbumPage extends Component {
             loading.style = "";
         }, 2500);
     }
-    getMusicPlayer(trackId) {
-        new MusicPlayer(document.querySelector("#fixed"), trackId);
+    getMusicPlayer(props) {
+        new MusicPlayer(document.querySelector("#fixed"), props);
     }
 }

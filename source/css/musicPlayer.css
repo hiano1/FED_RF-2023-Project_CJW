@@ -10,7 +10,7 @@
         "b c d" auto/
         1fr 1fr 1fr;
     width: 100vw;
-    height: 100px;
+    height: 270px;
     z-index: 1000;
 }
 .track_slider_container {

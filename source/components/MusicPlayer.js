@@ -2,12 +2,12 @@ import Component from "../core/Component.js";
 
 export default class MusicPlayer extends Component {
     template() {
-        // <div style="line-break: anywhere;word-break: normal;overflow: hidden;white-space: nowrap;text-overflow: ellipsis;">
-        const trackId = this.props;
+        const props = this.props;
         return `        
         <div class="fixedPlayer">
         <iframe id="soundCloudWidget" width="100%" height="166" scrolling="no" frameborder="no" allow="autoplay" 
-        src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/${trackId}&auto_play=true"></iframe>
+        src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/${props[0]}&auto_play=true"></iframe>
+        <div style="line-break: anywhere;word-break: normal;overflow: hidden;white-space: nowrap;text-overflow: ellipsis;">
         </div>
         <div class="track_slider_container">
             <div class="current_time">00:00</div>
@@ -22,7 +22,7 @@ export default class MusicPlayer extends Component {
         </div>
         <div class="track_info">
             <div class="track_art">
-                <img src="./source/resource/art01.jpg" alt="" />
+                <img src="${props[1]}" alt="" />
             </div>
             <div class="title_box">
                 <div class="track_name">
@@ -113,26 +113,10 @@ export default class MusicPlayer extends Component {
     }
 
     setEvent() {
-        /////////////api default setting//////////////
-        let soundCloudWidget = document.getElementById("soundCloudWidget");
-        let widget = SC.Widget(soundCloudWidget);
+        const { artist, title } = this.props;
 
-        widget.bind(SC.Widget.Events.READY, function () {
-            widget.bind(SC.Widget.Events.PLAY, function () {
-                // get information about currently playing sound
-                widget.getCurrentSound((currentSound) => {
-                    console.log(currentSound);
-                    // duration, full_duration,id
-                });
-            });
-            widget.setVolume(50);
-            widget.getVolume(function (volume) {
-                console.log("current volume value is " + volume);
-            });
-        });
-
+        ///////////////custom player ui setting//////////////////
         let track_info = document.querySelector(".track_info"),
-            track_art = document.querySelector(".track_art"),
             track_name = document.querySelector(".track_name span"),
             track_artist = document.querySelector(".track_artist span"),
             playpause_btn = document.querySelector(".playpause_track"),
@@ -144,44 +128,61 @@ export default class MusicPlayer extends Component {
             curr_time = document.querySelector(".current_time"),
             total_duration = document.querySelector(".total_duration"),
             track_index = 0,
+            isReadyPlayer = false,
             isPlaying = false,
             updateTimer,
-            curr_track = document.createElement("audio"),
-            track_list = [
-                {
-                    name: "Night Owl",
-                    artist: "Broke For Free",
-                    image: "Image URL",
-                    path: "./source/resource/test_music.mp3",
-                },
-                {
-                    name: "Enthusiast",
-                    artist: "Tours",
-                    image: "Image URL",
-                    path: "../source/resource/colabs-hero.mp4",
-                },
-                {
-                    name: "Shipping Lanes",
-                    artist: "Chad Crouch",
-                    image: "Image URL",
-                    path: "Shipping_Lanes.mp3",
-                },
-            ];
+            track_list = [];
 
-        function loadTrack(track_index) {
+        //호출되면 리스트에 노래 데이터 담기
+        //플레이 리스트 추가 --> 나중
+        /////////////sound cloud setting//////////////
+        let soundCloudWidget,
+            widget,
+            volume,
+            currentTime = 0,
+            isSeekUpdate = true,
+            totalDuration;
+
+        function playingCheck() {
+            isReadyPlayer ? addTrack() : newTrack();
+        }
+
+        function newTrack() {
+            soundCloudWidget = document.getElementById("soundCloudWidget");
+            widget = SC.Widget(soundCloudWidget);
             clearInterval(updateTimer);
             resetValues();
+            ////////////////////////
+            track_list.push("id");
+            track_name.textContent = artist;
+            track_artist.textContent = title;
 
-            curr_track.src = track_list[track_index].path;
-            curr_track.load();
-
-            track_art.style.backgroundImage = `url(${track_list[track_index].image})`;
-            track_name.textContent = track_list[track_index].name;
-            track_artist.textContent = track_list[track_index].artist;
-
-            updateTimer = setInterval(seekUpdate, 1000);
-
-            curr_track.addEventListener("ended", nextTrack);
+            //api setting
+            widget.bind(SC.Widget.Events.READY, () => {
+                widget.bind(SC.Widget.Events.PLAY, () => {
+                    volume = widget.getVolume();
+                    widget.getDuration((time) => {
+                        seekUpdate("duration", time);
+                    });
+                    widget.bind(SC.Widget.Events.PLAY_PROGRESS, () => {
+                        if (isSeekUpdate) {
+                            isSeekUpdate = false;
+                            setTimeout(() => {
+                                widget.getPosition((time) => {
+                                    seekUpdate("current", time);
+                                    isSeekUpdate = true;
+                                });
+                            }, 1000);
+                            console.log(totalDuration);
+                        }
+                    });
+                    togglePlayButton();
+                });
+                widget.bind(SC.Widget.Events.FINISH, () => {
+                    togglePlayButton();
+                    nextTrack();
+                });
+            });
         }
 
         function resetValues() {
@@ -190,83 +191,88 @@ export default class MusicPlayer extends Component {
             track_slider.value = 0;
         }
 
-        function playpauseTrack() {
-            !isPlaying ? playTrack() : pauseTrack();
+        function TrackplayEvent() {
+            if (isPlaying) {
+                widget.pause();
+            } else if (!isPlaying) {
+                widget.play();
+            }
+            togglePlayButton();
         }
+        function addTrack(params) {}
 
-        function playTrack() {
-            curr_track.play();
-            isPlaying = true;
-
-            playpause_btn.innerHTML =
-                '<svg xmlns="http://www.w3.org/2000/svg" height="80" viewBox="0 -960 960 960" width="80" fill="rgb(220, 220, 220)"><path d="M360-320h80v-320h-80v320Zm160 0h80v-320h-80v320ZM480-80q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Zm0-80q134 0 227-93t93-227q0-134-93-227t-227-93q-134 0-227 93t-93 227q0 134 93 227t227 93Zm0-320Z"/></svg>';
-        }
-
-        function pauseTrack() {
-            curr_track.pause();
-            isPlaying = false;
-
-            playpause_btn.innerHTML =
-                '<svg xmlns="http://www.w3.org/2000/svg" height="80" viewBox="0 -960 960 960" width="80" fill="rgb(220, 220, 220)"><path d="m380-300 280-180-280-180v360ZM480-80q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Zm0-80q134 0 227-93t93-227q0-134-93-227t-227-93q-134 0-227 93t-93 227q0 134 93 227t227 93Zm0-320Z" /></svg>';
-        }
+        function loadTrack(params) {}
 
         function nextTrack() {
-            //if last to first
             track_index < track_list.length - 1 ? (track_index += 1) : (track_index = 0);
 
             loadTrack(track_index);
-            playTrack();
         }
 
         function prevTrack() {
             track_index > 0 ? (track_index -= 1) : (track_index = track_list.length - 1);
 
             loadTrack(track_index);
-            playTrack();
+        }
+
+        function togglePlayButton() {
+            if (!isPlaying) {
+                isPlaying = true;
+                playpause_btn.innerHTML =
+                    '<svg xmlns="http://www.w3.org/2000/svg" height="80" viewBox="0 -960 960 960" width="80" fill="rgb(220, 220, 220)"><path d="M360-320h80v-320h-80v320Zm160 0h80v-320h-80v320ZM480-80q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Zm0-80q134 0 227-93t93-227q0-134-93-227t-227-93q-134 0-227 93t-93 227q0 134 93 227t227 93Zm0-320Z"/></svg>';
+            } else if (isPlaying) {
+                isPlaying = false;
+                playpause_btn.innerHTML =
+                    '<svg xmlns="http://www.w3.org/2000/svg" height="80" viewBox="0 -960 960 960" width="80" fill="rgb(220, 220, 220)"><path d="m380-300 280-180-280-180v360ZM480-80q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Zm0-80q134 0 227-93t93-227q0-134-93-227t-227-93q-134 0-227 93t-93 227q0 134 93 227t227 93Zm0-320Z" /></svg>';
+            }
         }
 
         function seekTo() {
-            seekto = curr_track.duration * (track_slider.value / 100);
-
-            curr_track.currentTime = seekto;
+            widget.seekTo(totalDuration * track_slider.value * 10);
         }
 
         function setVolume() {
-            curr_track.volume = volume_slider.value / 100;
+            volume = volume_slider.value / 100;
         }
 
-        function seekUpdate() {
+        function seekUpdate(type, time) {
             let seekPosition = 0;
 
-            if (!isNaN(curr_track.duration)) {
-                seekPosition = curr_track.currentTime * (100 / curr_track.duration);
-                track_slider.value = seekPosition;
-
-                let currentMinutes = Math.floor(curr_track.currentTime / 60);
-                let currentSeconds = Math.floor(curr_track.currentTime - currentMinutes * 60);
-                let durationMinutes = Math.floor(curr_track.duration / 60);
-                let durationSeconds = Math.floor(curr_track.duration - durationMinutes * 60);
-
-                if (currentSeconds < 10) {
-                    currentSeconds = "0" + currentSeconds;
-                }
+            if (type == "duration") {
+                totalDuration = Math.floor(time / 1000);
+                let durationMinutes = Math.floor(totalDuration / 60);
+                let durationSeconds = Math.floor(totalDuration - durationMinutes * 60);
                 if (durationSeconds < 10) {
                     durationSeconds = "0" + durationSeconds;
-                }
-                if (currentMinutes < 10) {
-                    currentMinutes = "0" + currentMinutes;
                 }
                 if (durationMinutes < 10) {
                     durationMinutes = "0" + durationMinutes;
                 }
-
-                curr_time.textContent = currentMinutes + ":" + currentSeconds;
                 total_duration.textContent = durationMinutes + ":" + durationSeconds;
+            } else {
+                currentTime = Math.floor(time / 1000);
+                if (!isNaN(totalDuration)) {
+                    seekPosition = currentTime * (100 / totalDuration);
+                    track_slider.value = seekPosition;
+
+                    let currentMinutes = Math.floor(currentTime / 60);
+                    let currentSeconds = Math.floor(currentTime - currentMinutes * 60);
+
+                    if (currentSeconds < 10) {
+                        currentSeconds = "0" + currentSeconds;
+                    }
+
+                    if (currentMinutes < 10) {
+                        currentMinutes = "0" + currentMinutes;
+                    }
+
+                    curr_time.textContent = currentMinutes + ":" + currentSeconds;
+                }
             }
         }
 
         playpause_btn.addEventListener("click", (e) => {
-            playpauseTrack();
+            TrackplayEvent();
         });
         next_btn.addEventListener("click", (e) => {
             nextTrack();
@@ -287,13 +293,11 @@ export default class MusicPlayer extends Component {
             //이미 있는 페이지 load시 페이지만 이동
         });
         player_close_button.addEventListener("click", (e) => {
-            //노래 중지, 플레이어 창 제거 및 updateTimer, curr_track 등 초기화
             document.querySelector(".fixedPlayer").remove();
         });
         // 페이지에서 곡 재생시 받아오는 부분 작업 필요
         // track_slider 개선 필요
-        // track_list list<map> 형태로 외부 저장
 
-        loadTrack(track_index);
+        playingCheck();
     }
 }
