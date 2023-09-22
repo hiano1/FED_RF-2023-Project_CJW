@@ -124,23 +124,22 @@ export default class AlbumDetail extends Component {
             <div class="div_warp">
                 <div class="album_contents_container">
                     <div class="album_content">
-                        <video src=""></video>
-                    </div>
-                    <div class="album_content"></div>
-                    <div class="album_content">
-                        <img class="content_thumbnail" alt="thumbnail" />
+                        <img class="content_thumbnail" src="/source/resource/img/artists/njb.webp" alt="thumbnail" />
                     </div>
                     <div class="album_content">
-                        <img class="content_thumbnail" alt="thumbnail" />
+                        <img class="content_thumbnail" src="/source/resource/img/artists/ari.webp" alt="thumbnail" />
                     </div>
                     <div class="album_content">
-                        <img class="content_thumbnail" alt="thumbnail" />
+                        <img class="content_thumbnail" src="/source/resource/img/artists/bmb.jpg" alt="thumbnail" />
                     </div>
                     <div class="album_content">
-                        <img class="content_thumbnail" alt="thumbnail" />
+                        <img class="content_thumbnail" src="/source/resource/img/artists/bzb.jpeg" alt="thumbnail" />
                     </div>
                     <div class="album_content">
-                        <img class="content_thumbnail" alt="thumbnail" />
+                        <img class="content_thumbnail" src="/source/resource/img/artists/byrb.jpg" alt="thumbnail" />
+                    </div>
+                    <div class="album_content">
+                        <img class="content_thumbnail"src="/source/resource/img/artists/dprb.jpg" alt="thumbnail" />
                     </div>
                 </div>
             </div>
@@ -191,6 +190,7 @@ export default class AlbumDetail extends Component {
                 startFlag = false;
             }
             // Keep scrollbar in the middle of the viewport
+            window.scroll(0, window.screen.height);
         }
 
         function clickPageNav(e) {
