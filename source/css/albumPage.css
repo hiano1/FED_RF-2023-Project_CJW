@@ -118,6 +118,61 @@
     font-size: 5vw;
     line-height: 8vh;
 }
+.intro_video_text span {
+    letter-spacing: 5px;
+    filter: drop-shadow(2px 2px 2px rgb(78, 78, 78));
+}
+
+.muteButton {
+    height: 30px;
+    width: 30px;
+    position: absolute;
+    right: 5vw;
+    bottom: 15vh;
+    color: #fff;
+    overflow: hidden;
+    display: inline-block;
+    transform: scale(1.5) rotateY(180deg);
+}
+.muteButton span {
+    display: block;
+    width: 8px;
+    height: 8px;
+    background: #fff;
+    margin: 11px 0 0 2px;
+}
+.muteButton span:after {
+    content: "";
+    position: absolute;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-color: transparent #fff transparent transparent;
+    border-width: 10px 14px 10px 15px;
+    left: -13px;
+    top: 5px;
+}
+.muteButton span:before {
+    transform: rotate(45deg);
+    border-radius: 0 50px 0 0;
+    content: "";
+    position: absolute;
+    width: 5px;
+    height: 5px;
+    border-style: double;
+    border-color: #fff;
+    border-width: 7px 7px 0 0;
+    left: 18px;
+    top: 9px;
+    transition: all 0.2s ease-out;
+}
+.muteButton:hover span:before {
+    transform: scale(0.9) translate(-3px, 0) rotate(42deg);
+}
+.muteButton.mute span:before {
+    transform: scale(0.7) translate(-15px, 0) rotate(36deg);
+    opacity: 0;
+}
 
 .div_warp {
     width: 100%;

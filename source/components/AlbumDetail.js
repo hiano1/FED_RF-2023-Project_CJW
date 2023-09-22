@@ -45,11 +45,13 @@ export default class AlbumDetail extends Component {
 
         <section class="s1">
             <div class="intro_stiky_video">
-                <div style="">
-                <iframe src="https://player.vimeo.com/video/845597890?background=1" style="position:absolute;width:100%;height:100%;" frameborder="0"></iframe>
-                </div>
+                <video class="introVideo" src="${albumData.introlink}" autoplay muted loop></video>
                 <div class="intro_video_text">
-                    <h2>${albumData.title} </br> ${albumData.titleSong}</h2>
+                    <span>${albumData.title}</span><br>
+                    <span>${albumData.introtext}</span>
+                </div>
+                <div class="muteButton mute">
+                    <span></span>
                 </div>
             </div>
         </section>
@@ -150,7 +152,8 @@ export default class AlbumDetail extends Component {
         const { goMainPage, getMusicPlayer } = this.props,
             TIME_OUT = 600,
             sections = document.querySelectorAll("section"),
-            sectionStick = document.querySelector(".section_nav");
+            sectionStick = document.querySelector(".section_nav"),
+            mutedButton = document.querySelector(".muteButton");
         let startFlag = true,
             initialScroll = window.scrollY,
             index = 1,
@@ -246,6 +249,16 @@ export default class AlbumDetail extends Component {
         });
         this.addEvent("mouseout", ".album_content", (e) => {
             e.target.style.transform = "";
+        });
+
+        mutedButton.addEventListener("click", (e) => {
+            let video = document.querySelector(".introVideo");
+            mutedButton.classList.toggle("mute");
+            if (video.muted == true) {
+                video.muted = false;
+            } else if (video.muted == false) {
+                video.muted = true;
+            }
         });
     }
 }
