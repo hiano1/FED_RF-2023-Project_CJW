@@ -123,7 +123,7 @@ export default class AlbumDetail extends Component {
         <section class="s3">
             <div class="div_warp">
                 <div class="album_contents_container">
-                    <div class="album_content">
+                    <div class="album_content"> 
                         <img class="content_thumbnail" src="./source/resource/img/artists/njb.webp" alt="thumbnail" />
                     </div>
                     <div class="album_content">
