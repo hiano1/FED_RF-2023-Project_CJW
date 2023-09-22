@@ -124,22 +124,22 @@ export default class AlbumDetail extends Component {
             <div class="div_warp">
                 <div class="album_contents_container">
                     <div class="album_content">
-                        <img class="content_thumbnail" src="/source/resource/img/artists/njb.webp" alt="thumbnail" />
+                        <img class="content_thumbnail" src="./source/resource/img/artists/njb.webp" alt="thumbnail" />
                     </div>
                     <div class="album_content">
-                        <img class="content_thumbnail" src="/source/resource/img/artists/ari.webp" alt="thumbnail" />
+                        <img class="content_thumbnail" src="./source/resource/img/artists/ari.webp" alt="thumbnail" />
                     </div>
                     <div class="album_content">
-                        <img class="content_thumbnail" src="/source/resource/img/artists/bmb.jpg" alt="thumbnail" />
+                        <img class="content_thumbnail" src="./source/resource/img/artists/bmb.jpg" alt="thumbnail" />
                     </div>
                     <div class="album_content">
-                        <img class="content_thumbnail" src="/source/resource/img/artists/bzb.jpeg" alt="thumbnail" />
+                        <img class="content_thumbnail" src="./source/resource/img/artists/bzb.jpeg" alt="thumbnail" />
                     </div>
                     <div class="album_content">
-                        <img class="content_thumbnail" src="/source/resource/img/artists/byrb.jpg" alt="thumbnail" />
+                        <img class="content_thumbnail" src="./source/resource/img/artists/byrb.jpg" alt="thumbnail" />
                     </div>
                     <div class="album_content">
-                        <img class="content_thumbnail"src="/source/resource/img/artists/dprb.jpg" alt="thumbnail" />
+                        <img class="content_thumbnail"src="./source/resource/img/artists/dprb.jpg" alt="thumbnail" />
                     </div>
                 </div>
             </div>
